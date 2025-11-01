@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { MenuItem } from './menuData';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronDown } from 'lucide-react';
@@ -14,9 +14,12 @@ interface MobileMenuProps {
 const MobileMenu: React.FC<MobileMenuProps> = ({ menuItems, isOpen, onClose }) => {
   const [activeSubmenu, setActiveSubmenu] = useState<number | null>(null);
   const [showConsultationForm, setShowConsultationForm] = useState(false);
+  const navigate = useNavigate();
   const location = useLocation();
 
-  const toggleSubmenu = (id: number) => {
+  const toggleSubmenu = (e: React.MouseEvent, id: number) => {
+    e.stopPropagation();
+    e.preventDefault();
     setActiveSubmenu(activeSubmenu === id ? null : id);
   };
 
@@ -183,12 +186,19 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ menuItems, isOpen, onClose }) =
                         <div className="relative group">
                           <Link
                             to={item.link}
-                            className={`flex items-center justify-between py-4 text-[15px] font-light tracking-wide transition-all duration-300 ${
+                            className={`w-full flex items-center justify-between py-4 text-[15px] font-light tracking-wide transition-all duration-300 ${
                               isActive
                                 ? 'text-gray-900 font-normal'
                                 : 'text-gray-600 hover:text-gray-900'
                             }`}
-                            onClick={!item.has_dropdown ? onClose : undefined}
+                            onClick={(e) => {
+                              if (item.has_dropdown) {
+                                e.preventDefault();
+                                toggleSubmenu(e, item.id);
+                              } else {
+                                onClose();
+                              }
+                            }}
                           >
                             <span className="relative">
                               {item.title}
@@ -200,55 +210,44 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ menuItems, isOpen, onClose }) =
                                 />
                               )}
                             </span>
-                            
                             {item.has_dropdown && (
-                              <motion.button
+                              <ChevronDown 
+                                className={`w-4 h-4 ml-2 transition-transform duration-200 ${activeSubmenu === item.id ? 'transform rotate-180' : ''}`} 
+                                strokeWidth={1.5}
                                 onClick={(e) => {
                                   e.preventDefault();
-                                  toggleSubmenu(item.id);
+                                  e.stopPropagation();
+                                  toggleSubmenu(e, item.id);
                                 }}
-                                className="ml-2 text-gray-400 hover:text-gray-600 transition-colors duration-200"
-                                whileTap={{ scale: 0.9 }}
-                              >
-                                <motion.div
-                                  animate={{ rotate: activeSubmenu === item.id ? 180 : 0 }}
-                                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-                                >
-                                  <ChevronDown className="w-4 h-4" strokeWidth={1.5} />
-                                </motion.div>
-                              </motion.button>
+                              />
                             )}
                           </Link>
-
-                          {/* Subtle hover line */}
-                          <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gray-200 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                         </div>
 
                         {item.has_dropdown && item.sub_menus && (
                           <motion.div
-                            variants={subMenuVariants}
                             initial="closed"
                             animate={activeSubmenu === item.id ? 'open' : 'closed'}
+                            variants={subMenuVariants}
                             className="overflow-hidden"
                           >
-                            <ul className="pl-4 pt-2 pb-2 space-y-0">
-                              {item.sub_menus.map((subMenu, subIndex) => (
-                                <motion.li
-                                  key={subIndex}
-                                  initial={{ opacity: 0, x: -5 }}
-                                  animate={activeSubmenu === item.id ? { opacity: 1, x: 0 } : { opacity: 0, x: -5 }}
-                                  transition={{ delay: subIndex * 0.03, duration: 0.3 }}
-                                >
+                            <div className="pl-4 pt-2 space-y-2">
+                              {item.sub_menus?.map((subItem, subIndex) => {
+                                const isSubActive = location.pathname === subItem.link;
+                                return (
                                   <Link
-                                    to={subMenu.link}
-                                    className="block py-3 text-[13px] font-light text-gray-500 hover:text-gray-900 transition-colors duration-200"
+                                    key={subIndex}
+                                    to={subItem.link}
                                     onClick={onClose}
+                                    className={`block py-2 text-sm ${
+                                      isSubActive ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'
+                                    }`}
                                   >
-                                    {subMenu.title}
+                                    {subItem.title}
                                   </Link>
-                                </motion.li>
-                              ))}
-                            </ul>
+                                );
+                              })}
+                            </div>
                           </motion.div>
                         )}
                       </motion.li>

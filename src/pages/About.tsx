@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Award, Target, Heart, TrendingUp } from "lucide-react";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import aboutBanner from "@/assets/about-banner.jpg";
 import founderImage from "@/assets/founder.jpg";
 import BrandsMarquee from "@/components/BrandsMarquee";
@@ -56,48 +56,78 @@ const About = () => {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Vision Card */}
-            <div className="group bg-card rounded-2xl p-10 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden relative h-full">
-              {/* Hover Image Overlay */}
-              <div className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                <img
-                  src="https://images.unsplash.com/photo-1616484812829-0c5b2a9c7f1c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                  alt="Vision"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/60" />
-              </div>
-              
-              <div className="relative z-10">
-                <div className="mb-6">
-                  <Target className="w-16 h-16 text-primary group-hover:text-white transition-colors" />
+            <div className="group bg-card rounded-2xl p-6 md:p-10 overflow-hidden relative h-full
+              md:hover:shadow-xl md:transition-all md:duration-300 md:hover:-translate-y-2">
+              {/* Mobile - Static Content */}
+              <div className="md:hidden">
+                <div className="mb-4">
+                  <Target className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-3xl font-bold mb-4 group-hover:text-white transition-colors">Our Vision</h3>
-                <p className="text-muted-foreground leading-relaxed group-hover:text-white/80 transition-colors">
+                <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
+                <p className="text-muted-foreground leading-relaxed">
                   To be recognized globally as the premier interior design firm that sets the standard for excellence, innovation, and sustainability in creating spaces that inspire and elevate the human experience.
                 </p>
+              </div>
+              
+              {/* Desktop - Hover Effects */}
+              <div className="hidden md:block">
+                {/* Hover Image Overlay */}
+                <div className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  <img
+                    src="https://images.unsplash.com/photo-1616484812829-0c5b2a9c7f1c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                    alt="Vision"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/60" />
+                </div>
+                
+                <div className="relative z-10">
+                  <div className="mb-6">
+                    <Target className="w-16 h-16 text-primary group-hover:text-white transition-colors" />
+                  </div>
+                  <h3 className="text-3xl font-bold mb-4 group-hover:text-white transition-colors">Our Vision</h3>
+                  <p className="text-muted-foreground leading-relaxed group-hover:text-white/80 transition-colors">
+                    To be recognized globally as the premier interior design firm that sets the standard for excellence, innovation, and sustainability in creating spaces that inspire and elevate the human experience.
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Mission Card */}
-            <div className="group bg-card rounded-2xl p-10 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden relative h-full">
-              {/* Hover Image Overlay */}
-              <div className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                <img
-                  src="https://images.unsplash.com/photo-1522071820081-009c5fdcb1d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                  alt="Mission"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/60" />
-              </div>
-              
-              <div className="relative z-10">
-                <div className="mb-6">
-                  <Heart className="w-16 h-16 text-primary group-hover:text-white transition-colors" />
+            <div className="group bg-card rounded-2xl p-6 md:p-10 overflow-hidden relative h-full
+              md:hover:shadow-xl md:transition-all md:duration-300 md:hover:-translate-y-2">
+              {/* Mobile - Static Content */}
+              <div className="md:hidden">
+                <div className="mb-4">
+                  <Heart className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-3xl font-bold mb-4 group-hover:text-white transition-colors">Our Mission</h3>
-                <p className="text-muted-foreground leading-relaxed group-hover:text-white/80 transition-colors">
+                <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
+                <p className="text-muted-foreground leading-relaxed">
                   To deliver exceptional design solutions that blend aesthetics with functionality, while fostering lasting relationships with our clients through transparency, creativity, and unwavering commitment to quality.
                 </p>
+              </div>
+              
+              {/* Desktop - Hover Effects */}
+              <div className="hidden md:block">
+                {/* Hover Image Overlay */}
+                <div className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  <img
+                    src="https://images.unsplash.com/photo-1522071820081-009c5fdcb1d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                    alt="Mission"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/60" />
+                </div>
+                
+                <div className="relative z-10">
+                  <div className="mb-6">
+                    <Heart className="w-16 h-16 text-primary group-hover:text-white transition-colors" />
+                  </div>
+                  <h3 className="text-3xl font-bold mb-4 group-hover:text-white transition-colors">Our Mission</h3>
+                  <p className="text-muted-foreground leading-relaxed group-hover:text-white/80 transition-colors">
+                    To deliver exceptional design solutions that blend aesthetics with functionality, while fostering lasting relationships with our clients through transparency, creativity, and unwavering commitment to quality.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -178,13 +208,44 @@ const About = () => {
   );
 };
 
-// CountUp component for smooth number animation
-const CountUp = ({ end, duration = 2 }) => {
+// CountUp component props interface
+interface CountUpProps {
+  end: number;
+  duration?: number;
+}
+
+// CountUp component for smooth number animation when scrolled into view
+const CountUp = ({ end, duration = 2 }: CountUpProps) => {
   const [count, setCount] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const countRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
-    if (hasAnimated) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          setIsInView(true);
+          hasAnimated.current = true;
+        }
+      },
+      { threshold: 0.5 } // Trigger when 50% of the element is visible
+    );
+
+    const currentRef = countRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isInView) return;
     
     let start = 0;
     const increment = end / (duration * 60); // 60fps
@@ -192,18 +253,17 @@ const CountUp = ({ end, duration = 2 }) => {
     const timer = setInterval(() => {
       start += increment;
       if (start >= end) {
-        setCount(end);
+        setCount(Math.floor(end));
         clearInterval(timer);
-        setHasAnimated(true);
       } else {
         setCount(Math.floor(start));
       }
     }, 1000/60);
     
     return () => clearInterval(timer);
-  }, [end, duration, hasAnimated]);
+  }, [end, duration, isInView]);
 
-  return <span>{count}</span>;
+  return <span ref={countRef}>{count}</span>;
 };
 
 export default About;

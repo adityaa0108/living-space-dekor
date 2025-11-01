@@ -49,7 +49,7 @@ const Process = () => {
                   loop
                   muted
                   playsInline
-                  className="w-full h-[120%] object-cover transition-transform duration-700 md:group-hover:scale-125 -translate-y-[10%]"
+                  className="w-full h-[120%] object-cover transition-transform duration-700 -translate-y-[10%] md:group-hover:scale-125"
                 >
                   <source src={step.video} type="video/mp4" />
                   Your browser does not support the video tag.
@@ -62,18 +62,20 @@ const Process = () => {
                 {/* Always visible title */}
                 <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
                 
-                {/* Description - always visible on mobile, hover on desktop */}
-                <div className="overflow-hidden transition-all duration-500 max-h-0 group-hover:max-h-40 md:group-hover:max-h-40 lg:group-hover:max-h-40">
-                  <div className="pt-2">
-                    <p className="text-gray-200 text-sm md:group-hover:block">{step.description}</p>
-                    <div className="text-2xl font-bold text-primary mt-3">0{index + 1}</div>
-                  </div>
-                </div>
-                
-                {/* Mobile - Always show description */}
+                {/* Description - only shown on mobile by default, also on desktop hover */}
                 <div className="md:hidden mt-2">
                   <p className="text-gray-200 text-sm">{step.description}</p>
                   <div className="text-2xl font-bold text-primary mt-3">0{index + 1}</div>
+                </div>
+                
+                {/* Desktop - Show on hover */}
+                <div className="hidden md:block">
+                  <div className="overflow-hidden transition-all duration-500 max-h-0 group-hover:max-h-40">
+                    <div className="pt-2">
+                      <p className="text-gray-200 text-sm">{step.description}</p>
+                      <div className="text-2xl font-bold text-primary mt-3">0{index + 1}</div>
+                    </div>
+                  </div>
                 </div>
               </div>
               

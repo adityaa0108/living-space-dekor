@@ -187,17 +187,24 @@ const Portfolio = () => {
         <div className="container mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {filteredProjects.map((project, index) => (
-              <div key={index} className="group cursor-pointer" onClick={() => openModal(index)}>
-                <div className="relative overflow-hidden rounded-xl sm:rounded-2xl aspect-[4/5] sm:aspect-[3/4] w-full">
+              <div key={index} className="group">
+                <div 
+                  className="relative overflow-hidden rounded-xl sm:rounded-2xl aspect-[4/5] sm:aspect-[3/4] w-full cursor-pointer"
+                  onClick={() => openModal(index)}
+                >
                   <img
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                    <div className="text-white">
-                      <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-                      <p className="text-white/80">{project.description}</p>
+                  {/* Mobile - Only show image */}
+                  <div className="md:hidden absolute inset-0" />
+                  
+                  {/* Desktop - Hover effect with content at bottom */}
+                  <div className="hidden md:block absolute inset-0 group-hover:bg-black/30 transition-colors duration-300">
+                    <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                      <h3 className="text-2xl font-bold text-white mb-1">{project.title}</h3>
+                      <p className="text-white/80 text-sm">{project.description}</p>
                     </div>
                   </div>
                 </div>

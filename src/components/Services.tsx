@@ -45,10 +45,11 @@ const Services = () => {
             <Link
               key={index}
               to={service.path}
-              className="group bg-card rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden relative"
+              className="group bg-card rounded-2xl p-8 overflow-hidden relative
+                md:hover:shadow-xl md:hover:-translate-y-2 transition-all duration-300"
             >
-              {/* Hover Image Overlay */}
-              <div className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+              {/* Hover Image Overlay - Only on non-touch devices */}
+              <div className="absolute inset-0 w-full h-full opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
                 <img
                   src={service.image}
                   alt={service.title}
@@ -59,20 +60,20 @@ const Services = () => {
               
               <div className="relative z-10">
                 <div className="mb-6">
-                  <service.icon className="w-12 h-12 text-primary group-hover:text-white transition-colors" />
+                  <service.icon className="w-12 h-12 text-primary md:group-hover:text-white transition-colors" />
                 </div>
                 
-                <h3 className="text-2xl font-semibold mb-4 group-hover:text-white transition-colors">
+                <h3 className="text-2xl font-semibold mb-4 md:group-hover:text-white transition-colors">
                   {service.title}
                 </h3>
                 
-                <p className="text-muted-foreground mb-6 group-hover:text-white/80 transition-colors">
+                <p className="text-muted-foreground mb-6 md:group-hover:text-white/80 transition-colors">
                   {service.description}
                 </p>
                 
-                <div className="flex items-center text-primary group-hover:text-white group-hover:gap-2 transition-all">
+                <div className="flex items-center text-primary md:group-hover:text-white md:group-hover:gap-2 transition-all">
                   <span className="font-medium">Learn More</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-5 h-5 md:group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
             </Link>
