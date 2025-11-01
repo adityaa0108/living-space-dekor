@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { MenuItem } from './menuData';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronDown } from 'lucide-react';
+import { ConsultationForm } from '../ConsultationForm';
 
 interface MobileMenuProps {
   menuItems: MenuItem[];
@@ -12,6 +13,7 @@ interface MobileMenuProps {
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ menuItems, isOpen, onClose }) => {
   const [activeSubmenu, setActiveSubmenu] = useState<number | null>(null);
+  const [showConsultationForm, setShowConsultationForm] = useState(false);
   const location = useLocation();
 
   const toggleSubmenu = (id: number) => {
@@ -100,12 +102,16 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ menuItems, isOpen, onClose }) =
     };
   }, [isOpen]);
 
+  // Don't automatically close consultation form when mobile menu closes
+  // as we're using it after menu close
+
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isOpen && (
-        <>
+        <div key="mobile-menu">
           {/* Overlay */}
           <motion.div
+            key="overlay"
             initial="hidden"
             animate="visible"
             exit="exit"
@@ -120,6 +126,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ menuItems, isOpen, onClose }) =
           
           {/* Menu */}
           <motion.div
+            key="menu"
             initial="hidden"
             animate="visible"
             exit="exit"
@@ -260,13 +267,39 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ menuItems, isOpen, onClose }) =
                 <p className="text-xs font-light tracking-wider text-gray-500 uppercase mb-4">
                   Get in Touch
                 </p>
-                <button className="w-full py-3.5 bg-gray-900 text-white text-sm font-light tracking-wide hover:bg-gray-800 transition-colors duration-300">
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    // Close the menu first
+                    onClose();
+                    // Then show the form after a small delay to allow the menu to close
+                    setTimeout(() => {
+                      setShowConsultationForm(true);
+                    }, 100);
+                  }}
+                  className="w-full py-3.5 bg-gray-900 text-white text-sm font-light tracking-wide hover:bg-gray-800 transition-colors duration-300"
+                >
                   Book Consultation
                 </button>
               </motion.div>
             </div>
           </motion.div>
-        </>
+        </div>
+      )}
+      
+      {/* Consultation Form */}
+      {showConsultationForm && (
+        <motion.div 
+          key="consultation-form"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/50 z-[10000] flex items-center justify-center p-4"
+        >
+          <div className="w-full max-w-md">
+            <ConsultationForm onClose={() => setShowConsultationForm(false)} />
+          </div>
+        </motion.div>
       )}
     </AnimatePresence>
   );

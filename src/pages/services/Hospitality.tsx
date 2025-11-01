@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { CheckCircle, Star } from "lucide-react";
+import { CheckCircle, Star, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import hospitalityHero from "@/assets/hospitality-hero.jpg";
 
 const Hospitality = () => {
@@ -80,37 +81,47 @@ const Hospitality = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
+                id: 'hotel-design',
                 title: 'Hotel Design',
                 description: 'Luxurious and functional hotel spaces that create memorable guest experiences.',
-                image: hospitalityHero
+                image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
               },
               {
+                id: 'restaurant-bars',
                 title: 'Restaurant & Bars',
                 description: 'Atmospheric dining spaces that complement your culinary vision and brand.',
-                image: hospitalityHero
+                image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
               },
               {
+                id: 'resort-spas',
                 title: 'Resort & Spas',
                 description: 'Tranquil retreats designed for relaxation and rejuvenation.',
-                image: hospitalityHero
+                image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
               },
               {
+                id: 'lobby-reception',
                 title: 'Lobby & Reception',
                 description: 'Grand entrances that make a powerful first impression on your guests.',
-                image: hospitalityHero
+                image: 'https://images.unsplash.com/photo-1566669437683-9d0a9c675de5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
               },
               {
+                id: 'event-spaces',
                 title: 'Event Spaces',
                 description: 'Versatile venues perfect for hosting memorable events and gatherings.',
-                image: hospitalityHero
+                image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80'
               },
               {
+                id: 'wellness-centers',
                 title: 'Wellness Centers',
                 description: 'Serene environments dedicated to health, wellness, and self-care.',
-                image: hospitalityHero
+                image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
               }
             ].map((category, index) => (
-              <div key={index} className="relative group overflow-hidden rounded-xl h-80 md:h-96 shadow-2xl">
+              <Link 
+                key={index} 
+                to={`/services/${category.id}`}
+                className="relative group overflow-hidden rounded-xl h-80 md:h-96 shadow-2xl block"
+              >
                 {/* Image Background */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
                   <img
@@ -129,35 +140,23 @@ const Hospitality = () => {
                   <div className="overflow-hidden transition-all duration-500 max-h-0 group-hover:max-h-40 md:group-hover:max-h-40">
                     <div className="pt-2">
                       <p className="text-gray-200 text-sm">{category.description}</p>
-                      <button 
-                        className="mt-4 text-white font-medium hover:underline flex items-center gap-2"
-                        onClick={() => {/* Handle expand action */}}
-                      >
+                      <div className="mt-4 text-white font-medium hover:underline flex items-center gap-2">
                         Learn More
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right">
-                          <path d="M5 12h14"/>
-                          <path d="m12 5 7 7-7 7"/>
-                        </svg>
-                      </button>
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
                     </div>
                   </div>
                   
                   {/* Mobile - Always show description */}
                   <div className="md:hidden mt-2">
                     <p className="text-gray-200 text-sm">{category.description}</p>
-                    <button 
-                      className="mt-2 text-white font-medium hover:underline flex items-center gap-2"
-                      onClick={() => {/* Handle expand action */}}
-                    >
+                    <div className="mt-2 text-white font-medium hover:underline flex items-center gap-2">
                       Learn More
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right">
-                        <path d="M5 12h14"/>
-                        <path d="m12 5 7 7-7 7"/>
-                      </svg>
-                    </button>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

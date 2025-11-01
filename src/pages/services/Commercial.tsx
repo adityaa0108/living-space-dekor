@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { CheckCircle, Star } from "lucide-react";
+import { CheckCircle, Star, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import commercialHero from "@/assets/commercial-hero.jpg";
 
 const Commercial = () => {
@@ -80,37 +81,47 @@ const Commercial = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
+                id: 'office-spaces',
                 title: 'Office Spaces',
                 description: 'Innovative office designs that enhance productivity and reflect your corporate identity.',
-                image: commercialHero
+                image: 'https://images.unsplash.com/photo-1497366811353-6870744d04ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80'
               },
               {
+                id: 'retail-design',
                 title: 'Retail Design',
                 description: 'Engaging retail environments that drive customer engagement and sales.',
-                image: commercialHero
+                image: 'https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80'
               },
               {
+                id: 'coworking-spaces',
                 title: 'Co-working Spaces',
                 description: 'Flexible and collaborative work environments for modern professionals.',
-                image: commercialHero
+                image: 'https://images.unsplash.com/photo-1522071820081-009c2f7a3f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
               },
               {
+                id: 'corporate-lobbies',
                 title: 'Corporate Lobbies',
                 description: 'Impressive entryways that make a lasting first impression.',
-                image: commercialHero
+                image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1376&q=80'
               },
               {
+                id: 'conference-rooms',
                 title: 'Conference Rooms',
                 description: 'Professional meeting spaces equipped with the latest technology.',
-                image: commercialHero
+                image: 'https://images.unsplash.com/photo-1579829366248-204fe8413f31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
               },
               {
+                id: 'wellness-areas',
                 title: 'Wellness Areas',
                 description: 'Spaces that promote employee well-being and work-life balance.',
-                image: commercialHero
+                image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
               }
             ].map((category, index) => (
-              <div key={index} className="relative group overflow-hidden rounded-xl h-80 md:h-96 shadow-2xl">
+              <Link 
+                key={index} 
+                to={`/services/${category.id}`}
+                className="relative group overflow-hidden rounded-xl h-80 md:h-96 shadow-2xl block"
+              >
                 {/* Image Background */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
                   <img
@@ -129,35 +140,23 @@ const Commercial = () => {
                   <div className="overflow-hidden transition-all duration-500 max-h-0 group-hover:max-h-40 md:group-hover:max-h-40">
                     <div className="pt-2">
                       <p className="text-gray-200 text-sm">{category.description}</p>
-                      <button 
-                        className="mt-4 text-white font-medium hover:underline flex items-center gap-2"
-                        onClick={() => {/* Handle expand action */}}
-                      >
+                      <div className="mt-4 text-white font-medium hover:underline flex items-center gap-2">
                         Learn More
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right">
-                          <path d="M5 12h14"/>
-                          <path d="m12 5 7 7-7 7"/>
-                        </svg>
-                      </button>
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
                     </div>
                   </div>
                   
                   {/* Mobile - Always show description */}
                   <div className="md:hidden mt-2">
                     <p className="text-gray-200 text-sm">{category.description}</p>
-                    <button 
-                      className="mt-2 text-white font-medium hover:underline flex items-center gap-2"
-                      onClick={() => {/* Handle expand action */}}
-                    >
+                    <div className="mt-2 text-white font-medium hover:underline flex items-center gap-2">
                       Learn More
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right">
-                        <path d="M5 12h14"/>
-                        <path d="m12 5 7 7-7 7"/>
-                      </svg>
-                    </button>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

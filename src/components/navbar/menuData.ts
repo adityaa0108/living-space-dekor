@@ -44,11 +44,5 @@ export const menuData: MenuItem[] = [
     title: "Blog",
     link: "/blog",
     has_dropdown: false,
-  },
-  {
-    id: 6,
-    title: "Contact",
-    link: "/contact",
-    has_dropdown: false,
-  },
+  }
 ];
