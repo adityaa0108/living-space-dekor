@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { menuData } from "./navbar/menuData";
+import MobileMenu from "./navbar/MobileMenu";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -16,59 +18,66 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { 
-      name: "Services", 
-      path: "#",
-      dropdown: [
-        { name: "Residential Design", path: "/services/residential" },
-        { name: "Commercial Spaces", path: "/services/commercial" },
-        { name: "Hospitality Design", path: "/services/hospitality" },
-      ]
-    },
-    { name: "Portfolio", path: "/portfolio" },
-    { name: "Contact", path: "/contact" },
-  ];
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen]);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? "glass shadow-lg py-3" : "bg-transparent py-6"
-    }`}>
-      <div className="container mx-auto px-6">
+    <nav 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled 
+          ? "bg-white/95 shadow-lg py-3 backdrop-blur-sm" 
+          : "bg-transparent py-6"
+      }`}
+    >
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between">
-          <Link to="/" className="text-2xl font-bold text-primary-foreground tracking-wider">
+          <Link 
+            to="/" 
+            className={`text-2xl font-bold tracking-wider font-serif ${
+              scrolled ? "text-gray-900" : "text-white"
+            }`}
+          >
             Living Space Dekor
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <div key={link.name} className="relative group">
-                {link.dropdown ? (
+            {menuData.map((item) => (
+              <div key={item.id} className="relative group">
+                {item.has_dropdown ? (
                   <>
                     <button 
-                      className="text-primary-foreground hover:text-secondary transition-colors flex items-center gap-1"
+                      className={`hover:text-secondary transition-colors flex items-center gap-1 font-medium ${
+                        scrolled ? "text-gray-700" : "text-white"
+                      }`}
                       onMouseEnter={() => setServicesOpen(true)}
                       onMouseLeave={() => setServicesOpen(false)}
                     >
-                      {link.name}
-                      <ChevronDown className="w-4 h-4" />
+                      {item.title}
+                      <ChevronDown className={`w-4 h-4 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
                     </button>
-                    {servicesOpen && (
+                    {servicesOpen && item.sub_menus && (
                       <div 
-                        className="absolute top-full left-0 mt-2 w-56 glass rounded-lg shadow-xl py-2"
+                        className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-56 bg-white rounded-lg shadow-xl py-2 z-50"
                         onMouseEnter={() => setServicesOpen(true)}
                         onMouseLeave={() => setServicesOpen(false)}
                       >
-                        {link.dropdown.map((item) => (
+                        {item.sub_menus.map((subItem, index) => (
                           <Link
-                            key={item.name}
-                            to={item.path}
-                            className="block px-4 py-3 text-primary-foreground hover:bg-secondary/20 transition-colors"
+                            key={index}
+                            to={subItem.link}
+                            className="block px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors"
+                            onClick={() => setServicesOpen(false)}
                           >
-                            {item.name}
+                            {subItem.title}
                           </Link>
                         ))}
                       </div>
@@ -76,19 +85,21 @@ const Navbar = () => {
                   </>
                 ) : (
                   <Link
-                    to={link.path}
-                    className={`text-primary-foreground hover:text-secondary transition-colors ${
-                      location.pathname === link.path ? "text-secondary font-medium" : ""
+                    to={item.link}
+                    className={`hover:text-secondary transition-colors font-medium ${
+                      location.pathname === item.link 
+                        ? "text-secondary" 
+                        : scrolled ? "text-gray-700" : "text-white"
                     }`}
                   >
-                    {link.name}
+                    {item.title}
                   </Link>
                 )}
               </div>
             ))}
             <Link
               to="/contact"
-              className="px-6 py-2 bg-secondary text-secondary-foreground rounded-full hover:bg-secondary-dark transition-all"
+              className="px-6 py-2.5 bg-secondary text-white rounded-full hover:bg-secondary-dark transition-all font-medium"
             >
               Get In Touch
             </Link>
@@ -96,56 +107,27 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-primary-foreground"
+            className={`md:hidden p-2 ${
+              scrolled ? "text-gray-700" : "text-white"
+            }`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden glass rounded-lg mt-4 py-4">
-            {navLinks.map((link) => (
-              <div key={link.name}>
-                {link.dropdown ? (
-                  <>
-                    <button 
-                      className="w-full text-left px-4 py-3 text-primary-foreground flex items-center justify-between"
-                      onClick={() => setServicesOpen(!servicesOpen)}
-                    >
-                      {link.name}
-                      <ChevronDown className={`w-4 h-4 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
-                    </button>
-                    {servicesOpen && (
-                      <div className="bg-black/10">
-                        {link.dropdown.map((item) => (
-                          <Link
-                            key={item.name}
-                            to={item.path}
-                            className="block px-8 py-2 text-primary-foreground hover:bg-secondary/20"
-                            onClick={() => setMobileMenuOpen(false)}
-                          >
-                            {item.name}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <Link
-                    to={link.path}
-                    className="block px-4 py-3 text-primary-foreground hover:bg-secondary/20"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                )}
-              </div>
-            ))}
-          </div>
-        )}
       </div>
+
+      {/* Mobile Menu */}
+      <MobileMenu 
+        menuItems={menuData} 
+        isOpen={mobileMenuOpen} 
+        onClose={() => setMobileMenuOpen(false)} 
+      />
     </nav>
   );
 };
