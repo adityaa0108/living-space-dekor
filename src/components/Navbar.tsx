@@ -99,7 +99,7 @@ const Navbar = () => {
             ))}
             <Link
               to="/contact"
-              className="px-6 py-2.5 bg-secondary text-white rounded-full hover:bg-secondary-dark transition-all font-medium"
+              className="px-6 py-2.5 bg-primary text-primary-foreground rounded-full hover:bg-primary-dark transition-all font-medium"
             >
               Get In Touch
             </Link>
