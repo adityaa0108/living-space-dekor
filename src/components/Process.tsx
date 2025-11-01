@@ -29,7 +29,7 @@ const Process = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-900 text-white">
+    <section className="py-20 bg-[hsl(var(--primary))] text-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <span className="text-primary/80 uppercase tracking-wider text-sm">How We Work</span>

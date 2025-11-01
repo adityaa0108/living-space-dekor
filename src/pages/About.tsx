@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Award, Target, Heart, TrendingUp } from "lucide-react";
+import { useEffect, useState } from 'react';
 import aboutBanner from "@/assets/about-banner.jpg";
 import founderImage from "@/assets/founder.jpg";
 import Team from "@/components/Team";
@@ -76,11 +77,11 @@ const About = () => {
               </p>
               <div className="flex items-center gap-8">
                 <div>
-                  <div className="text-3xl font-bold text-primary">150+</div>
+                  <div className="text-3xl font-bold text-primary"><CountUp end={150} duration={2} />+</div>
                   <div className="text-muted-foreground">Projects Completed</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-primary">20+</div>
+                  <div className="text-3xl font-bold text-primary"><CountUp end={20} duration={2} />+</div>
                   <div className="text-muted-foreground">Awards Won</div>
                 </div>
               </div>
@@ -100,24 +101,24 @@ const About = () => {
       </section>
 
       {/* Stats */}
-      <section className="py-20 bg-primary text-primary-foreground">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-5xl font-bold mb-2">150+</div>
-              <div className="text-primary-foreground/80">Projects Completed</div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            <div className="text-center">
+              <div className="text-5xl font-bold mb-2"><CountUp end={150} duration={2} />+</div>
+              <div className="text-muted-foreground">Projects Completed</div>
             </div>
-            <div>
-              <div className="text-5xl font-bold mb-2">120+</div>
-              <div className="text-primary-foreground/80">Happy Clients</div>
+            <div className="text-center">
+              <div className="text-5xl font-bold mb-2"><CountUp end={120} duration={2} />+</div>
+              <div className="text-muted-foreground">Happy Clients</div>
             </div>
-            <div>
-              <div className="text-5xl font-bold mb-2">20+</div>
-              <div className="text-primary-foreground/80">Design Awards</div>
+            <div className="text-center">
+              <div className="text-5xl font-bold mb-2"><CountUp end={20} duration={2} />+</div>
+              <div className="text-muted-foreground">Design Awards</div>
             </div>
-            <div>
-              <div className="text-5xl font-bold mb-2">15+</div>
-              <div className="text-primary-foreground/80">Years Experience</div>
+            <div className="text-center">
+              <div className="text-5xl font-bold mb-2"><CountUp end={15} duration={2} />+</div>
+              <div className="text-muted-foreground">Years Experience</div>
             </div>
           </div>
         </div>
@@ -129,6 +130,34 @@ const About = () => {
       <Footer />
     </div>
   );
+};
+
+// CountUp component for smooth number animation
+const CountUp = ({ end, duration = 2 }) => {
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    if (hasAnimated) return;
+    
+    let start = 0;
+    const increment = end / (duration * 60); // 60fps
+    
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        setCount(end);
+        clearInterval(timer);
+        setHasAnimated(true);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 1000/60);
+    
+    return () => clearInterval(timer);
+  }, [end, duration, hasAnimated]);
+
+  return <span>{count}</span>;
 };
 
 export default About;
