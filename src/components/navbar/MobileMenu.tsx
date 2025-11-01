@@ -110,7 +110,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ menuItems, isOpen, onClose }) =
             animate="visible"
             exit="exit"
             variants={overlayVariants}
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 md:hidden"
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[9998] md:hidden"
+            style={{
+              transform: 'translateZ(0)',
+              willChange: 'opacity'
+            }}
             onClick={onClose}
           />
           
@@ -120,10 +124,14 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ menuItems, isOpen, onClose }) =
             animate="visible"
             exit="exit"
             variants={menuVariants}
-            className="fixed inset-y-0 right-0 w-[320px] bg-white z-50 shadow-2xl overflow-y-auto"
+            className="fixed inset-y-0 right-0 w-[320px] bg-white z-[9999] shadow-2xl overflow-y-auto"
+            style={{
+              transform: 'translateZ(0)',
+              willChange: 'transform'
+            }}
           >
             {/* Header */}
-            <div className="sticky top-0 bg-white border-b border-gray-100 z-10">
+            <div className="sticky top-0 bg-white border-b border-gray-100 z-10" style={{ transform: 'translateZ(0)' }}>
               <div className="flex items-center justify-between px-6 py-5">
                 <motion.div
                   initial={{ opacity: 0 }}

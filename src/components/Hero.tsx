@@ -2,9 +2,13 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-main.jpg";
 
-const Hero = () => {
+interface HeroProps {
+  className?: string;
+}
+
+const Hero = ({ className = '' }: HeroProps) => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0">
+    <section className={`relative min-h-screen flex items-center justify-center overflow-hidden ${className}`}>
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
