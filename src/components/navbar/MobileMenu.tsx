@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { MenuItem } from './menuData';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, ChevronDown } from 'lucide-react';
 
 interface MobileMenuProps {
   menuItems: MenuItem[];
@@ -16,76 +18,249 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ menuItems, isOpen, onClose }) =
     setActiveSubmenu(activeSubmenu === id ? null : id);
   };
 
-  if (!isOpen) return null;
+  // Animation variants with proper TypeScript types for Framer Motion
+  const menuVariants = {
+    hidden: { x: '100%' } as const,
+    visible: { 
+      x: 0,
+      transition: { 
+        type: 'spring' as const,
+        damping: 40,
+        stiffness: 300
+      }
+    },
+    exit: { 
+      x: '100%',
+      transition: { 
+        type: 'spring' as const,
+        damping: 40,
+        stiffness: 300
+      }
+    }
+  };
+
+  const overlayVariants = {
+    hidden: { opacity: 0 } as const,
+    visible: { 
+      opacity: 1,
+      transition: { 
+        duration: 0.3,
+        ease: 'easeInOut' as const
+      }
+    },
+    exit: { 
+      opacity: 0,
+      transition: { 
+        duration: 0.2,
+        ease: 'easeInOut' as const
+      }
+    }
+  };
+  
+  const itemVariants = {
+    closed: { 
+      opacity: 0,
+      y: 10
+    } as const,
+    open: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: 0.1 + (i * 0.04),
+        duration: 0.4,
+        ease: [0.4, 0, 0.2, 1] as const
+      }
+    })
+  };
+  
+  const subMenuVariants = {
+    closed: {
+      height: 0,
+      opacity: 0
+    } as const,
+    open: {
+      height: 'auto' as const,
+      opacity: 1,
+      transition: {
+        duration: 0.3,
+        ease: [0.4, 0, 0.2, 1] as const
+      }
+    }
+  } as const;
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   return (
-    <div className="md:hidden fixed inset-0 bg-white z-50 pt-20 px-6 overflow-y-auto">
-      <button
-        onClick={onClose}
-        className="absolute top-6 right-6 text-gray-600 hover:text-gray-900"
-        aria-label="Close menu"
-      >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-      
-      <ul className="space-y-4 py-4">
-        {menuItems.map((item) => (
-          <li key={item.id} className="border-b border-gray-100">
-            <div className="flex items-center justify-between py-3">
-              <Link
-                to={item.link}
-                className={`block w-full text-lg ${
-                  location.pathname === item.link ? 'text-secondary' : 'text-gray-800'
-                }`}
-                onClick={onClose}
-              >
-                {item.title}
-              </Link>
-              {item.has_dropdown && (
-                <button
-                  onClick={() => toggleSubmenu(item.id)}
-                  className="p-2 text-gray-500 hover:text-gray-700"
-                  aria-expanded={activeSubmenu === item.id}
-                  aria-label={`Toggle ${item.title} submenu`}
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Overlay */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={overlayVariants}
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 md:hidden"
+            onClick={onClose}
+          />
+          
+          {/* Menu */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={menuVariants}
+            className="fixed inset-y-0 right-0 w-[320px] bg-white z-50 shadow-2xl overflow-y-auto"
+          >
+            {/* Header */}
+            <div className="sticky top-0 bg-white border-b border-gray-100 z-10">
+              <div className="flex items-center justify-between px-6 py-5">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
                 >
-                  <svg
-                    className={`w-5 h-5 transform transition-transform ${
-                      activeSubmenu === item.id ? 'rotate-180' : ''
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-              )}
+                  <h1 className="text-xl font-light tracking-[0.2em] text-gray-900">
+                    LIVING SPACE
+                  </h1>
+                </motion.div>
+                
+                <motion.button
+                  onClick={onClose}
+                  className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-50 text-gray-500 hover:text-gray-900 transition-all duration-200"
+                  aria-label="Close menu"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.25 }}
+                >
+                  <X className="w-5 h-5" strokeWidth={1.5} />
+                </motion.button>
+              </div>
             </div>
-            {item.has_dropdown && item.sub_menus && (
-              <ul
-                className={`pl-4 space-y-2 overflow-hidden transition-all duration-300 ${
-                  activeSubmenu === item.id ? 'max-h-96 py-2' : 'max-h-0'
-                }`}
+
+            {/* Navigation */}
+            <div className="px-6 py-8">
+              <nav>
+                <ul className="space-y-0">
+                  {menuItems.map((item, index) => {
+                    const isActive = location.pathname === item.link;
+                    
+                    return (
+                      <motion.li 
+                        key={item.id}
+                        variants={itemVariants}
+                        initial="closed"
+                        animate="open"
+                        custom={index}
+                      >
+                        <div className="relative group">
+                          <Link
+                            to={item.link}
+                            className={`flex items-center justify-between py-4 text-[15px] font-light tracking-wide transition-all duration-300 ${
+                              isActive
+                                ? 'text-gray-900 font-normal'
+                                : 'text-gray-600 hover:text-gray-900'
+                            }`}
+                            onClick={!item.has_dropdown ? onClose : undefined}
+                          >
+                            <span className="relative">
+                              {item.title}
+                              {isActive && (
+                                <motion.span
+                                  layoutId="activeUnderline"
+                                  className="absolute -bottom-1 left-0 right-0 h-[1px] bg-gray-900"
+                                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                                />
+                              )}
+                            </span>
+                            
+                            {item.has_dropdown && (
+                              <motion.button
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  toggleSubmenu(item.id);
+                                }}
+                                className="ml-2 text-gray-400 hover:text-gray-600 transition-colors duration-200"
+                                whileTap={{ scale: 0.9 }}
+                              >
+                                <motion.div
+                                  animate={{ rotate: activeSubmenu === item.id ? 180 : 0 }}
+                                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                                >
+                                  <ChevronDown className="w-4 h-4" strokeWidth={1.5} />
+                                </motion.div>
+                              </motion.button>
+                            )}
+                          </Link>
+
+                          {/* Subtle hover line */}
+                          <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gray-200 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                        </div>
+
+                        {item.has_dropdown && item.sub_menus && (
+                          <motion.div
+                            variants={subMenuVariants}
+                            initial="closed"
+                            animate={activeSubmenu === item.id ? 'open' : 'closed'}
+                            className="overflow-hidden"
+                          >
+                            <ul className="pl-4 pt-2 pb-2 space-y-0">
+                              {item.sub_menus.map((subMenu, subIndex) => (
+                                <motion.li
+                                  key={subIndex}
+                                  initial={{ opacity: 0, x: -5 }}
+                                  animate={activeSubmenu === item.id ? { opacity: 1, x: 0 } : { opacity: 0, x: -5 }}
+                                  transition={{ delay: subIndex * 0.03, duration: 0.3 }}
+                                >
+                                  <Link
+                                    to={subMenu.link}
+                                    className="block py-3 text-[13px] font-light text-gray-500 hover:text-gray-900 transition-colors duration-200"
+                                    onClick={onClose}
+                                  >
+                                    {subMenu.title}
+                                  </Link>
+                                </motion.li>
+                              ))}
+                            </ul>
+                          </motion.div>
+                        )}
+                      </motion.li>
+                    );
+                  })}
+                </ul>
+              </nav>
+
+              {/* Simple CTA */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                className="mt-12 pt-8 border-t border-gray-100"
               >
-                {item.sub_menus.map((subMenu, index) => (
-                  <li key={index} className="py-1">
-                    <Link
-                      to={subMenu.link}
-                      className="block py-2 text-gray-600 hover:text-secondary transition-colors"
-                      onClick={onClose}
-                    >
-                      {subMenu.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        ))}
-      </ul>
-    </div>
+                <p className="text-xs font-light tracking-wider text-gray-500 uppercase mb-4">
+                  Get in Touch
+                </p>
+                <button className="w-full py-3.5 bg-gray-900 text-white text-sm font-light tracking-wide hover:bg-gray-800 transition-colors duration-300">
+                  Book Consultation
+                </button>
+              </motion.div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
   );
 };
 

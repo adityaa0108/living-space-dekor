@@ -54,22 +54,28 @@ const Navbar = () => {
               <div key={item.id} className="relative group">
                 {item.has_dropdown ? (
                   <>
-                    <button 
-                      className={`hover:text-secondary transition-colors flex items-center gap-1 font-medium ${
-                        scrolled ? "text-gray-700" : "text-white"
-                      }`}
+                    <div 
+                      className="relative group" 
                       onMouseEnter={() => setServicesOpen(true)}
                       onMouseLeave={() => setServicesOpen(false)}
                     >
-                      {item.title}
-                      <ChevronDown className={`w-4 h-4 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
-                    </button>
+                      <button 
+                        className={`hover:text-secondary transition-colors flex items-center gap-1 font-medium ${
+                          scrolled ? "text-gray-700" : "text-white"
+                        }`}
+                        onMouseEnter={() => setServicesOpen(true)}
+                      >
+                        {item.title}
+                        <ChevronDown className={`w-4 h-4 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
+                      </button>
+                    </div>
                     {servicesOpen && item.sub_menus && (
                       <div 
-                        className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-56 bg-white rounded-lg shadow-xl py-2 z-50"
+                        className="absolute left-1/2 transform -translate-x-1/2 pt-2"
                         onMouseEnter={() => setServicesOpen(true)}
                         onMouseLeave={() => setServicesOpen(false)}
                       >
+                        <div className="bg-white rounded-lg shadow-xl py-2 w-56">
                         {item.sub_menus.map((subItem, index) => (
                           <Link
                             key={index}
@@ -80,6 +86,7 @@ const Navbar = () => {
                             {subItem.title}
                           </Link>
                         ))}
+                        </div>
                       </div>
                     )}
                   </>

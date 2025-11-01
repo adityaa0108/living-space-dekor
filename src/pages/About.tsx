@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Award, Target, Heart, TrendingUp } from "lucide-react";
 import aboutBanner from "@/assets/about-banner.jpg";
 import founderImage from "@/assets/founder.jpg";
+import Team from "@/components/Team";
 
 const About = () => {
   return (
@@ -121,6 +122,9 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      {/* Team Section */}
+      <Team />
 
       <Footer />
     </div>
