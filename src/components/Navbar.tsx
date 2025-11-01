@@ -87,9 +87,7 @@ const Navbar = () => {
                   <Link
                     to={item.link}
                     className={`hover:text-secondary transition-colors font-medium ${
-                      location.pathname === item.link 
-                        ? "text-secondary" 
-                        : scrolled ? "text-gray-700" : "text-white"
+                      scrolled ? "text-gray-700" : "text-white"
                     }`}
                   >
                     {item.title}
