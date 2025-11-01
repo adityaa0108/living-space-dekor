@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import heroImage from "@/assets/hero-main.jpg";
+
+const heroImageUrl = "https://i.pinimg.com/736x/20/59/95/205995c1363172447037134340cbc30b.jpg";
 
 interface HeroProps {
   className?: string;
@@ -10,12 +11,22 @@ const Hero = ({ className = '' }: HeroProps) => {
   return (
     <section className={`relative min-h-screen flex items-center justify-center overflow-hidden ${className}`}>
       {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ 
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url(${heroImage})` 
-        }}
-      />
+      <div className="absolute inset-0">
+        {/* Mobile Image */}
+        <div 
+          className="md:hidden absolute inset-0 bg-cover bg-center"
+          style={{ 
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url(${heroImageUrl})`
+          }}
+        />
+        {/* Desktop Image */}
+        <div 
+          className="hidden md:block absolute inset-0 bg-cover bg-center"
+          style={{ 
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url(/logo/hero.jpg)`
+          }}
+        />
+      </div>
       
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 text-center">

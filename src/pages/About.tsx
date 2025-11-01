@@ -4,7 +4,18 @@ import { Award, Target, Heart, TrendingUp } from "lucide-react";
 import { useEffect, useState } from 'react';
 import aboutBanner from "@/assets/about-banner.jpg";
 import founderImage from "@/assets/founder.jpg";
-import Team from "@/components/Team";
+import BrandsMarquee from "@/components/BrandsMarquee";
+
+const brands = [
+  { name: "Ekkaa", logo: "/logo/logo.png" },
+  { name: "Gaur's Builder", logo: "/logo/logo.png" },
+  { name: "Design Hub", logo: "/logo/logo.png" },
+  { name: "Elite Interiors", logo: "/logo/logo.png" },
+  { name: "Urban Living", logo: "/logo/logo.png" },
+  { name: "Modern Spaces", logo: "/logo/logo.png" },
+  { name: "Luxe Design", logo: "/logo/logo.png" },
+  { name: "Creative Homes", logo: "/logo/logo.png" },
+];
 
 const About = () => {
   return (
@@ -43,20 +54,51 @@ const About = () => {
       {/* Vision & Mission */}
       <section className="py-20 bg-muted">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="bg-card rounded-2xl p-10">
-              <Target className="w-16 h-16 text-primary mb-6" />
-              <h3 className="text-3xl font-bold mb-4">Our Vision</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                To be recognized globally as the premier interior design firm that sets the standard for excellence, innovation, and sustainability in creating spaces that inspire and elevate the human experience.
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Vision Card */}
+            <div className="group bg-card rounded-2xl p-10 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden relative h-full">
+              {/* Hover Image Overlay */}
+              <div className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                <img
+                  src="https://images.unsplash.com/photo-1616484812829-0c5b2a9c7f1c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                  alt="Vision"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/60" />
+              </div>
+              
+              <div className="relative z-10">
+                <div className="mb-6">
+                  <Target className="w-16 h-16 text-primary group-hover:text-white transition-colors" />
+                </div>
+                <h3 className="text-3xl font-bold mb-4 group-hover:text-white transition-colors">Our Vision</h3>
+                <p className="text-muted-foreground leading-relaxed group-hover:text-white/80 transition-colors">
+                  To be recognized globally as the premier interior design firm that sets the standard for excellence, innovation, and sustainability in creating spaces that inspire and elevate the human experience.
+                </p>
+              </div>
             </div>
-            <div className="bg-card rounded-2xl p-10">
-              <Heart className="w-16 h-16 text-primary mb-6" />
-              <h3 className="text-3xl font-bold mb-4">Our Mission</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                To deliver exceptional design solutions that blend aesthetics with functionality, while fostering lasting relationships with our clients through transparency, creativity, and unwavering commitment to quality.
-              </p>
+
+            {/* Mission Card */}
+            <div className="group bg-card rounded-2xl p-10 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden relative h-full">
+              {/* Hover Image Overlay */}
+              <div className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                <img
+                  src="https://images.unsplash.com/photo-1522071820081-009c5fdcb1d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                  alt="Mission"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/60" />
+              </div>
+              
+              <div className="relative z-10">
+                <div className="mb-6">
+                  <Heart className="w-16 h-16 text-primary group-hover:text-white transition-colors" />
+                </div>
+                <h3 className="text-3xl font-bold mb-4 group-hover:text-white transition-colors">Our Mission</h3>
+                <p className="text-muted-foreground leading-relaxed group-hover:text-white/80 transition-colors">
+                  To deliver exceptional design solutions that blend aesthetics with functionality, while fostering lasting relationships with our clients through transparency, creativity, and unwavering commitment to quality.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -124,8 +166,12 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team Section */}
-      <Team />
+      {/* Brands Marquee Section */}
+      <BrandsMarquee 
+        brands={brands}
+        title="Trusted by Industry Leaders"
+        subtitle="Building confidence with renowned organizations"
+      />
 
       <Footer />
     </div>

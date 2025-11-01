@@ -44,13 +44,12 @@ const Navbar = () => {
       >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between">
-          <Link 
-            to="/" 
-            className={`text-2xl font-bold tracking-wider font-serif ${
-              scrolled ? "text-gray-900" : "text-white"
-            }`}
-          >
-            Living Space Dekor
+          <Link to="/" className="flex items-center">
+            <img 
+              src="/logo/logo.png" 
+              alt="Living Space Dekor Logo" 
+              className={`w-auto transition-all duration-300 ${scrolled ? 'h-10 md:h-14' : 'h-14 md:h-20'}`}
+            />
           </Link>
 
           {/* Desktop Navigation */}

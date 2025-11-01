@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { CheckCircle, Star } from "lucide-react";
+import { CheckCircle, Star, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import residentialHero from "@/assets/residential-hero.jpg";
 
 const Residential = () => {
@@ -80,37 +81,47 @@ const Residential = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
+                id: 'living-room',
                 title: 'Living Room Design',
                 description: 'Transform your living space with our expert design solutions that combine comfort and style.',
-                image: residentialHero
+                image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
               },
               {
+                id: 'kitchen',
                 title: 'Kitchen Remodeling',
                 description: 'Modernize your kitchen with our functional and aesthetically pleasing remodeling services.',
-                image: residentialHero
+                image: 'https://images.unsplash.com/photo-1600210492493-094691a3a9be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80'
               },
               {
+                id: 'bedroom',
                 title: 'Bedroom Design',
                 description: 'Create your perfect sanctuary with our personalized bedroom design services.',
-                image: residentialHero
+                image: 'https://images.unsplash.com/photo-151369420323-9dcab9f5a5a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
               },
               {
+                id: 'home-office',
                 title: 'Home Office',
                 description: 'Design a productive and inspiring workspace that fits your home and work style.',
-                image: residentialHero
+                image: 'https://images.unsplash.com/photo-1497366811353-6870744d04ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80'
               },
               {
+                id: 'bathroom',
                 title: 'Bathroom Renovation',
                 description: 'Upgrade your bathroom with our luxurious and practical renovation solutions.',
-                image: residentialHero
+                image: 'https://images.unsplash.com/photo-1600566751981-7c9e7d5e4e2b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
               },
               {
+                id: 'outdoor',
                 title: 'Outdoor Living',
                 description: 'Extend your living space outdoors with our beautiful and functional exterior designs.',
-                image: residentialHero
+                image: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
               }
             ].map((category, index) => (
-              <div key={index} className="relative group overflow-hidden rounded-xl h-80 md:h-96 shadow-2xl">
+              <Link 
+                key={category.id} 
+                to={`/services/${category.id}`}
+                className="relative group overflow-hidden rounded-xl h-80 md:h-96 shadow-2xl block"
+              >
                 {/* Image Background */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
                   <img
@@ -129,35 +140,23 @@ const Residential = () => {
                   <div className="overflow-hidden transition-all duration-500 max-h-0 group-hover:max-h-40 md:group-hover:max-h-40">
                     <div className="pt-2">
                       <p className="text-gray-200 text-sm">{category.description}</p>
-                      <button 
-                        className="mt-4 text-white font-medium hover:underline flex items-center gap-2"
-                        onClick={() => {/* Handle expand action */}}
-                      >
+                      <div className="mt-4 text-white font-medium hover:underline flex items-center gap-2">
                         Learn More
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right">
-                          <path d="M5 12h14"/>
-                          <path d="m12 5 7 7-7 7"/>
-                        </svg>
-                      </button>
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
                     </div>
                   </div>
                   
                   {/* Mobile - Always show description */}
                   <div className="md:hidden mt-2">
                     <p className="text-gray-200 text-sm">{category.description}</p>
-                    <button 
-                      className="mt-2 text-white font-medium hover:underline flex items-center gap-2"
-                      onClick={() => {/* Handle expand action */}}
-                    >
+                    <Link to={`/services/${category.id}`} className="mt-2 text-white font-medium hover:underline flex items-center gap-2">
                       Learn More
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right">
-                        <path d="M5 12h14"/>
-                        <path d="m12 5 7 7-7 7"/>
-                      </svg>
-                    </button>
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

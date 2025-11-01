@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import { Home, Building2, Hotel, ArrowRight } from "lucide-react";
+import residentialHero from "@/assets/residential-hero.jpg";
+import commercialHero from "@/assets/commercial-hero.jpg";
+import hospitalityHero from "@/assets/hospitality-hero.jpg";
 
 const Services = () => {
   const services = [
@@ -8,21 +11,21 @@ const Services = () => {
       title: "Residential Design",
       description: "Our client's needs and sensibilities are pivotal to our dream home creations. We combine uniqueness in style with practical functionality.",
       path: "/services/residential",
-      number: "01"
+      image: residentialHero
     },
     {
       icon: Building2,
       title: "Commercial Spaces",
       description: "Transform your workspace into an inspiring environment that enhances productivity and reflects your brand identity.",
       path: "/services/commercial",
-      number: "02"
+      image: commercialHero
     },
     {
       icon: Hotel,
       title: "Hospitality Design",
       description: "Create memorable experiences with sophisticated interiors that captivate guests and elevate your hospitality brand.",
       path: "/services/hospitality",
-      number: "03"
+      image: hospitalityHero
     }
   ];
 
@@ -42,26 +45,35 @@ const Services = () => {
             <Link
               key={index}
               to={service.path}
-              className="group bg-card rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+              className="group bg-card rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden relative"
             >
-              <div className="relative mb-6">
-                <span className="absolute -top-4 -left-4 text-6xl font-bold text-muted/20">
-                  {service.number}
-                </span>
-                <service.icon className="w-12 h-12 text-primary relative z-10" />
+              {/* Hover Image Overlay */}
+              <div className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/60" />
               </div>
               
-              <h3 className="text-2xl font-semibold mb-4 group-hover:text-primary transition-colors">
-                {service.title}
-              </h3>
-              
-              <p className="text-muted-foreground mb-6">
-                {service.description}
-              </p>
-              
-              <div className="flex items-center text-primary group-hover:gap-2 transition-all">
-                <span className="font-medium">Learn More</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <div className="relative z-10">
+                <div className="mb-6">
+                  <service.icon className="w-12 h-12 text-primary group-hover:text-white transition-colors" />
+                </div>
+                
+                <h3 className="text-2xl font-semibold mb-4 group-hover:text-white transition-colors">
+                  {service.title}
+                </h3>
+                
+                <p className="text-muted-foreground mb-6 group-hover:text-white/80 transition-colors">
+                  {service.description}
+                </p>
+                
+                <div className="flex items-center text-primary group-hover:text-white group-hover:gap-2 transition-all">
+                  <span className="font-medium">Learn More</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </div>
               </div>
             </Link>
           ))}
