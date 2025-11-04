@@ -1,9 +1,8 @@
-import { useParams } from 'react-router-dom';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { ArrowLeft, CheckCircle, Maximize2, X } from "lucide-react";
-import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { ArrowLeft, ArrowRight, CheckCircle, Maximize2, X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { ConsultationForm } from '@/components/ConsultationForm';
 
@@ -43,7 +42,7 @@ const services = [
     id: 'kitchen',
     title: 'Kitchen Remodeling',
     description: 'Modern and functional kitchen designs that make cooking a pleasure.',
-    image: 'https://images.unsplash.com/photo-1600210492493-094691a3a9be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80',
+    image: '/photos/res/kitchen/1.jpg',
     fullDescription: 'Our kitchen remodeling services transform your cooking space into a functional and stylish area. We focus on optimizing workflow, maximizing storage, and creating a beautiful aesthetic that matches your home.',
     features: [
       'Custom cabinetry and storage solutions',
@@ -52,22 +51,94 @@ const services = [
       'Lighting and electrical planning',
       'Backsplash and flooring options'
     ],
-    gallery: [
-      'https://images.unsplash.com/photo-1600210492493-094691a3a9be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80',
-      'https://images.unsplash.com/photo-1600125484165-8a5381869c1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1600566751981-7c9e7d5e4e2b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1600210492493-094691a3a9be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80',
-      'https://images.unsplash.com/photo-1600125484165-8a5381869c1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1600566751981-7c9e7d5e4e2b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1600125484165-8a5381869c1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1600566751981-7c9e7d5e4e2b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
+    images: [
+      {
+        url: '/photos/res/kitchen/1.jpg',
+        title: 'Modern White Kitchen',
+        description: 'Sleek white cabinetry with gold accents and marble countertops, featuring an open concept design with an island and pendant lighting.'
+      },
+      {
+        url: '/photos/res/kitchen/2.jpg',
+        title: 'Contemporary Gray Kitchen',
+        description: 'Elegant gray shaker cabinets with brass hardware, quartz countertops, and a spacious island with bar seating.'
+      },
+      {
+        url: '/photos/res/kitchen/3.jpg',
+        title: 'Rustic Farmhouse Kitchen',
+        description: 'Warm wood finishes with white shaker cabinets, farmhouse sink, and open shelving for a cozy, inviting atmosphere.'
+      },
+      {
+        url: '/photos/res/kitchen/4.jpg',
+        title: 'Minimalist Kitchen Design',
+        description: 'Clean lines, handleless cabinets, and integrated appliances create a seamless, clutter-free cooking space.'
+      },
+      {
+        url: '/photos/res/kitchen/5.jpg',
+        title: 'Luxury Marble Kitchen',
+        description: 'Stunning marble countertops and backsplash paired with custom cabinetry and professional-grade appliances.'
+      },
+      {
+        url: '/photos/res/kitchen/6.jpg',
+        title: 'Modern Black Kitchen',
+        description: 'Dramatic black cabinetry with matte black fixtures, accented with warm wood tones and under-cabinet lighting.'
+      },
+      {
+        url: '/photos/res/kitchen/7.jpg',
+        title: 'Coastal Blue Kitchen',
+        description: 'Light blue cabinetry with white quartz countertops, brass hardware, and natural wood accents for a beachy vibe.'
+      },
+      {
+        url: '/photos/res/kitchen/8.jpg',
+        title: 'Industrial Loft Kitchen',
+        description: 'Exposed brick, metal accents, and open shelving create an urban, industrial aesthetic with modern appliances.'
+      },
+      {
+        url: '/photos/res/kitchen/9.jpg',
+        title: 'Scandinavian Kitchen',
+        description: 'Light wood tones, white walls, and minimalist design elements create a bright, airy Scandinavian-inspired space.'
+      },
+      {
+        url: '/photos/res/kitchen/10.jpg',
+        title: 'Modern Farmhouse Kitchen',
+        description: 'White shaker cabinets, shiplap walls, and a large farmhouse sink combine modern and rustic elements.'
+      },
+      {
+        url: '/photos/res/kitchen/11.jpg',
+        title: 'Two-Tone Kitchen',
+        description: 'Contrasting upper and lower cabinets with a mix of open and closed storage solutions.'
+      },
+      {
+        url: '/photos/res/kitchen/12.jpg',
+        title: 'Gourmet Chef\'s Kitchen',
+        description: 'Professional-grade appliances, ample counter space, and a large central island for serious cooking enthusiasts.'
+      },
+      {
+        url: '/photos/res/kitchen/13.jpg',
+        title: 'Transitional Kitchen Design',
+        description: 'Blending traditional and contemporary elements with classic cabinetry and modern fixtures.'
+      },
+      {
+        url: '/photos/res/kitchen/14.jpg',
+        title: 'Elegant White Kitchen',
+        description: 'Timeless white cabinetry with intricate detailing, marble countertops, and crystal chandeliers.'
+      },
+      {
+        url: '/photos/res/kitchen/15.jpg',
+        title: 'Modern U-Shaped Kitchen',
+        description: 'Efficient U-shaped layout with dark wood cabinets, white countertops, and stainless steel appliances.'
+      },
+      {
+        url: '/photos/res/kitchen/16.jpg',
+        title: 'Luxury Open Concept Kitchen',
+        description: 'Spacious open layout with high-end finishes, large island, and seamless flow to living and dining areas.'
+      }
     ]
   },
   {
     id: 'bedroom',
     title: 'Bedroom Design',
     description: 'Create your perfect sanctuary with our personalized bedroom design services.',
-    image: 'https://images.unsplash.com/photo-151369420323-9dcab9f5a5a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+    image: '/photos/res/bedroom/1.jpg',
     fullDescription: 'Your bedroom should be a personal retreat where you can relax and recharge. Our bedroom designs focus on creating a peaceful and comfortable environment tailored to your needs and preferences. We pay special attention to lighting, storage, and layout to create a space that promotes rest and relaxation.',
     features: [
       'Custom bed and furniture selection',
@@ -76,15 +147,207 @@ const services = [
       'Color psychology and decor',
       'Window treatments and textiles'
     ],
-    gallery: [
-      'https://images.unsplash.com/photo-151369420323-9dcab9f5a5a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1513694203239-1b0c5a38367a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1513694203239-1b0c5a38367a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1513694203239-1b0c5a38367a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1513694203239-1b0c5a38367a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1513694203239-1b0c5a38367a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1513694203239-1b0c5a38367a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1513694203239-1b0c5a38367a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
+    images: [
+      {
+        url: '/photos/res/bedroom/1.jpg',
+        title: 'Luxury Master Suite',
+        description: 'Elegant master bedroom with a plush king-size bed, modern chandelier, and floor-to-ceiling windows offering stunning views.'
+      },
+      {
+        url: '/photos/res/bedroom/2.jpg',
+        title: 'Modern Minimalist Bedroom',
+        description: 'Clean lines and neutral tones create a calming atmosphere in this contemporary bedroom design.'
+      },
+      {
+        url: '/photos/res/bedroom/3.jpg',
+        title: 'Cozy Guest Room',
+        description: 'Warm and inviting guest room with comfortable bedding and soft lighting for a homey feel.'
+      },
+      {
+        url: '/photos/res/bedroom/4.jpg',
+        title: 'Elegant Master Bedroom',
+        description: 'Sophisticated master suite featuring a tufted headboard, luxury linens, and a sitting area.'
+      },
+      {
+        url: '/photos/res/bedroom/5.jpg',
+        title: 'Scandinavian Bedroom Design',
+        description: 'Light-filled bedroom with natural wood accents, white walls, and minimalist decor for a peaceful retreat.'
+      },
+      {
+        url: '/photos/res/bedroom/6.jpg',
+        title: 'Modern Farmhouse Bedroom',
+        description: 'Rustic charm meets modern comfort with shiplap walls and industrial lighting fixtures.'
+      },
+      {
+        url: '/photos/res/bedroom/7.jpg',
+        title: 'Luxury Hotel-Style Bedroom',
+        description: 'Opulent bedroom design with a dramatic headboard, plush bedding, and elegant nightstands.'
+      },
+      {
+        url: '/photos/res/bedroom/8.jpg',
+        title: 'Serene Blue Bedroom',
+        description: 'Calming blue color palette with soft textiles and natural light for ultimate relaxation.'
+      },
+      {
+        url: '/photos/res/bedroom/9.jpg',
+        title: 'Contemporary Loft Bedroom',
+        description: 'Urban loft-style bedroom with exposed brick, metal accents, and modern furniture.'
+      },
+      {
+        url: '/photos/res/bedroom/10.jpg',
+        title: 'Elegant Four-Poster Bed',
+        description: 'Classic four-poster bed with luxurious drapery and a sophisticated neutral color scheme.'
+      },
+      {
+        url: '/photos/res/bedroom/11.jpg',
+        title: 'Modern Black & White Bedroom',
+        description: 'Striking monochromatic design with geometric patterns and contemporary furniture.'
+      },
+      {
+        url: '/photos/res/bedroom/12.jpg',
+        title: 'Coastal Retreat Bedroom',
+        description: 'Beach-inspired bedroom with light, airy colors and natural textures for a relaxed vibe.'
+      },
+      {
+        url: '/photos/res/bedroom/13.jpg',
+        title: 'Rustic Elegance Bedroom',
+        description: 'Combines rustic wood elements with elegant furnishings for a warm, inviting space.'
+      },
+      {
+        url: '/photos/res/bedroom/14.jpg',
+        title: 'Modern Canopy Bed Design',
+        description: 'Sleek canopy bed with sheer curtains creates a dreamy, romantic atmosphere.'
+      },
+      {
+        url: '/photos/res/bedroom/15.jpg',
+        title: 'Minimalist Japanese-Inspired Bedroom',
+        description: 'Clean lines, natural materials, and a peaceful aesthetic inspired by Japanese design principles.'
+      },
+      {
+        url: '/photos/res/bedroom/16.jpg',
+        title: 'Luxury Master Suite with Seating',
+        description: 'Spacious master bedroom featuring a comfortable seating area and elegant decor.'
+      },
+      {
+        url: '/photos/res/bedroom/17.jpg',
+        title: 'Modern Platform Bed Design',
+        description: 'Low-profile platform bed with clean lines and integrated lighting.'
+      },
+      {
+        url: '/photos/res/bedroom/18.jpg',
+        title: 'Elegant Gray Bedroom',
+        description: 'Sophisticated gray color scheme with plush textiles and modern lighting.'
+      },
+      {
+        url: '/photos/res/bedroom/19.jpg',
+        title: 'Bohemian Chic Bedroom',
+        description: 'Eclectic mix of patterns, textures, and colors for a relaxed, bohemian vibe.'
+      },
+      {
+        url: '/photos/res/bedroom/20.jpg',
+        title: 'Luxury Bedroom with Fireplace',
+        description: 'Opulent master suite featuring a cozy fireplace and elegant seating area.'
+      },
+      {
+        url: '/photos/res/bedroom/21.jpg',
+        title: 'Modern Industrial Bedroom',
+        description: 'Urban industrial aesthetic with exposed ductwork, metal accents, and statement lighting.'
+      },
+      {
+        url: '/photos/res/bedroom/22.jpg',
+        title: 'Tranquil Green Bedroom',
+        description: 'Soothing green tones with natural wood elements create a peaceful, nature-inspired retreat.'
+      },
+      {
+        url: '/photos/res/bedroom/23.jpg',
+        title: 'Luxury Master Suite with Balcony',
+        description: 'Elegant bedroom opening to a private balcony with stunning outdoor views.'
+      },
+      {
+        url: '/photos/res/bedroom/24.jpg',
+        title: 'Modern Art Deco Bedroom',
+        description: 'Glamorous design featuring geometric patterns, mirrored surfaces, and rich jewel tones.'
+      },
+      {
+        url: '/photos/res/bedroom/25.jpg',
+        title: 'Rustic Cabin Bedroom',
+        description: 'Cozy log cabin atmosphere with warm wood paneling and a stone fireplace.'
+      },
+      {
+        url: '/photos/res/bedroom/26.jpg',
+        title: 'Modern Floating Bed Design',
+        description: 'Sleek, wall-mounted bed with hidden storage and integrated lighting.'
+      },
+      {
+        url: '/photos/res/bedroom/27.jpg',
+        title: 'Elegant Purple Accent Bedroom',
+        description: 'Rich purple accents against neutral tones create a luxurious and sophisticated space.'
+      },
+      {
+        url: '/photos/res/bedroom/28.jpg',
+        title: 'Minimalist Concrete Bedroom',
+        description: 'Industrial-chic design featuring concrete walls, clean lines, and minimalist decor.'
+      },
+      {
+        url: '/photos/res/bedroom/29.jpg',
+        title: 'Luxury Bedroom with Panoramic Windows',
+        description: 'Breathtaking views through floor-to-ceiling windows in this modern sanctuary.'
+      },
+      {
+        url: '/photos/res/bedroom/30.jpg',
+        title: 'Vintage French Country Bedroom',
+        description: 'Charming distressed furniture and soft pastel colors create a romantic, old-world feel.'
+      },
+      {
+        url: '/photos/res/bedroom/31.jpg',
+        title: 'Modern Bedroom with Reading Nook',
+        description: 'Cozy corner with built-in bookshelves and a comfortable reading chair.'
+      },
+      {
+        url: '/photos/res/bedroom/32.jpg',
+        title: 'Luxury Bedroom with Dressing Room',
+        description: 'Spacious suite featuring a walk-in closet and elegant dressing area.'
+      },
+      {
+        url: '/photos/res/bedroom/33.jpg',
+        title: 'Tropical Bedroom Oasis',
+        description: 'Lush greenery and natural materials bring the outdoors inside this relaxing retreat.'
+      },
+      {
+        url: '/photos/res/bedroom/34.jpg',
+        title: 'Modern Bedroom with Workspace',
+        description: 'Integrated home office area in a sleek, contemporary bedroom design.'
+      },
+      {
+        url: '/photos/res/bedroom/35.jpg',
+        title: 'Luxury Bedroom with Sitting Area',
+        description: 'Expansive master suite with a comfortable seating area and elegant decor.'
+      },
+      {
+        url: '/photos/res/bedroom/36.jpg',
+        title: 'Modern Bedroom with Fireplace',
+        description: 'Clean lines and a minimalist fireplace create a warm, inviting atmosphere.'
+      },
+      {
+        url: '/photos/res/bedroom/37.jpg',
+        title: 'Elegant Bedroom with Bay Window',
+        description: 'Sunny bay window with built-in seating adds charm to this elegant bedroom.'
+      },
+      {
+        url: '/photos/res/bedroom/38.jpg',
+        title: 'Modern Bedroom with Accent Wall',
+        description: 'Bold geometric wallpaper creates a striking focal point in this contemporary space.'
+      },
+      {
+        url: '/photos/res/bedroom/39.jpg',
+        title: 'Luxury Bedroom with Ensuite Bathroom',
+        description: 'Spacious suite featuring a luxurious bathroom with a freestanding tub.'
+      },
+      {
+        url: '/photos/res/bedroom/40.jpg',
+        title: 'Modern Bedroom with Panoramic Views',
+        description: 'Floor-to-ceiling windows showcase breathtaking views in this contemporary retreat.'
+      }
     ]
   },
   {
@@ -440,18 +703,24 @@ const getImageDescription = (imageUrl: string, serviceId: string): string => {
 const ServiceDetail = () => {
   const { serviceId } = useParams<{ serviceId: string }>();
   const navigate = useNavigate();
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  type ImageType = {
+    url: string;
+    title: string;
+    description: string;
+  };
+
+  const [selectedImage, setSelectedImage] = useState<ImageType | null>(null);
   const [showConsultationForm, setShowConsultationForm] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const imagesPerPage = 6; // Show 6 images per page
 
   // Prevent background scrolling when modal is open
   useEffect(() => {
-    if (selectedImage) {
+      if (selectedImage) {
       document.body.style.overflow = 'hidden';
-      setIsModalOpen(true);
     } else {
       document.body.style.overflow = 'auto';
-      setIsModalOpen(false);
     }
     
     return () => {
@@ -459,40 +728,35 @@ const ServiceDetail = () => {
     };
   }, [selectedImage]);
   
-  // Navigation functions for the image gallery
-  const handlePrevImage = () => {
-    if (!selectedImage || !service) return;
-    const currentIndex = service.gallery.indexOf(selectedImage);
-    const prevIndex = (currentIndex - 1 + service.gallery.length) % service.gallery.length;
-    setSelectedImage(service.gallery[prevIndex]);
-  };
-
-  const handleNextImage = () => {
-    if (!selectedImage || !service) return;
-    const currentIndex = service.gallery.indexOf(selectedImage);
-    const nextIndex = (currentIndex + 1) % service.gallery.length;
-    setSelectedImage(service.gallery[nextIndex]);
-  };
-  
-  // Find the service by ID
+  // Find the current service
   const service = services.find(s => s.id === serviceId);
   
   if (!service) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">Service not found</h2>
-          <button 
-            onClick={() => navigate(-1)}
-            className="text-primary hover:underline flex items-center justify-center mx-auto"
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Services
-          </button>
-        </div>
-      </div>
-    );
+    return <div>Service not found</div>;
   }
+  
+  // Navigation handlers for the image gallery
+  const handlePrevImage = () => {
+    if (!selectedImage || !service.images) return;
+    const currentIndex = service.images.findIndex(img => img.url === selectedImage.url);
+    if (currentIndex === -1) return;
+    const prevIndex = (currentIndex - 1 + service.images.length) % service.images.length;
+    const prevImage = service.images[prevIndex];
+    if (prevImage) {
+      setSelectedImage(prevImage);
+    }
+  };
+  
+  const handleNextImage = () => {
+    if (!selectedImage || !service.images) return;
+    const currentIndex = service.images.findIndex(img => img.url === selectedImage.url);
+    if (currentIndex === -1) return;
+    const nextIndex = (currentIndex + 1) % service.images.length;
+    const nextImage = service.images[nextIndex];
+    if (nextImage) {
+      setSelectedImage(nextImage);
+    }
+  };
 
   return (
     <div className="min-h-screen">
@@ -544,33 +808,80 @@ const ServiceDetail = () => {
               {/* Photo Gallery */}
               <div className="mt-16">
                 <div className="flex justify-between items-center mb-8">
-                  <h3 className="text-2xl font-semibold">Our Work</h3>
+                  <h3 className="text-2xl font-semibold">Our Kitchen Projects</h3>
                   <button 
-                    onClick={() => setSelectedImage(service.images[0])}
-                    className="text-primary hover:text-primary/80 flex items-center text-sm font-medium"
+                    onClick={() => service.images && service.images.length > 0 && setSelectedImage(service.images[0])}
+                    className="text-primary hover:text-primary/80 flex items-center text-sm font-medium group"
                   >
                     View All Photos
-                    <Maximize2 className="ml-2 w-4 h-4" />
+                    <Maximize2 className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </button>
                 </div>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  {(service.images || []).slice(0, 8).map((img, idx) => (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {(service.images || [])
+                    .slice((currentPage - 1) * imagesPerPage, currentPage * imagesPerPage)
+                    .map((img, idx) => (
                     <div 
-                      key={idx} 
-                      className="relative group overflow-hidden rounded-lg aspect-square cursor-pointer hover:shadow-lg transition-all duration-300"
+                      key={img.url} 
+                      className="relative group overflow-hidden rounded-xl cursor-pointer hover:shadow-xl transition-all duration-300 bg-muted/50 hover:bg-muted/30"
                       onClick={() => setSelectedImage(img)}
                     >
-                      <img
-                        src={img}
-                        alt={`${service.title} example ${idx + 1}`}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <Maximize2 className="text-white w-6 h-6 opacity-0 group-hover:opacity-100 transition-all duration-300 scale-90 group-hover:scale-100" />
+                      <div className="aspect-[4/3] overflow-hidden">
+                        <img
+                          src={img.url}
+                          alt={img.title}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          loading={idx < 3 ? 'eager' : 'lazy'}
+                        />
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                        <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                          <p className="text-white font-medium">{img.title}</p>
+                          <p className="text-white/80 text-sm line-clamp-2">
+                            {img.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}
                 </div>
+                
+                {/* Pagination */}
+                {service.images && service.images.length > imagesPerPage && (
+                  <div className="flex justify-center mt-8">
+                    <div className="flex items-center space-x-2">
+                      <button
+                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                        disabled={currentPage === 1}
+                        className="px-3 py-1 rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        Previous
+                      </button>
+                      
+                      {Array.from({ length: Math.ceil(service.images.length / imagesPerPage) }).map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentPage(index + 1)}
+                          className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                            currentPage === index + 1 
+                              ? 'bg-primary text-white' 
+                              : 'bg-white text-gray-700 hover:bg-gray-100'
+                          }`}
+                        >
+                          {index + 1}
+                        </button>
+                      ))}
+                      
+                      <button
+                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, Math.ceil(service.images.length / imagesPerPage)))}
+                        disabled={currentPage === Math.ceil(service.images.length / imagesPerPage)}
+                        className="px-3 py-1 rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        Next
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
               
               <div className="bg-muted/30 p-8 rounded-xl mt-16">
@@ -603,7 +914,7 @@ const ServiceDetail = () => {
       {/* Image Modal */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 bg-black/90 z-50 flex flex-col items-center p-4 overflow-hidden" 
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
           onClick={() => setSelectedImage(null)}
         >
           {/* Close Button - Fixed Position */}
@@ -638,66 +949,66 @@ const ServiceDetail = () => {
               }}
             >
               {/* Image Section */}
-              <div className="relative bg-white flex items-center justify-center p-4" style={{
-                minHeight: '50vh',
-                maxHeight: '70vh',
-                backgroundColor: '#ffffff',
-              }}>
-                <img 
-                  src={selectedImage} 
-                  alt="Enlarged view" 
-                  className="max-w-full max-h-full object-contain"
-                  style={{
-                    maxHeight: '100%',
-                    width: 'auto',
-                  }}
-                />
-                
+              <div className="relative bg-white flex items-center justify-center p-4">
                 {/* Navigation Buttons - Desktop */}
-                <div className="hidden sm:flex absolute inset-0 justify-between items-center pointer-events-none px-4">
-                  <button 
-                    onClick={(e) => { e.stopPropagation(); handlePrevImage(); }} 
-                    className="bg-black/60 text-white p-3 rounded-full hover:bg-black/80 transition-colors shadow-lg pointer-events-auto" 
-                    aria-label="Previous image"
-                  >
-                    <ArrowLeft className="w-6 h-6" />
-                  </button>
-                  <button 
-                    onClick={(e) => { e.stopPropagation(); handleNextImage(); }} 
-                    className="bg-black/60 text-white p-3 rounded-full hover:bg-black/80 transition-colors shadow-lg pointer-events-auto" 
-                    aria-label="Next image"
-                  >
-                    <ArrowLeft className="w-6 h-6 transform rotate-180" />
-                  </button>
+                <button 
+                  onClick={(e) => { e.stopPropagation(); handlePrevImage(); }} 
+                  className="hidden sm:block absolute left-4 bg-black/60 text-white p-3 rounded-full hover:bg-black/80 transition-colors shadow-lg z-10" 
+                  aria-label="Previous image"
+                >
+                  <ArrowLeft className="w-6 h-6" />
+                </button>
+                
+                {/* Main Image */}
+                <div className="relative w-full max-w-4xl">
+                  <img 
+                    src={selectedImage.url} 
+                    alt={selectedImage.title}
+                    className="w-full max-h-[70vh] object-contain"
+                    onClick={(e) => e.stopPropagation()}
+                  />
+                  <div className="mt-4 text-center">
+                    <h3 className="text-xl font-semibold">{selectedImage.title}</h3>
+                    <p className="text-gray-600">{selectedImage.description}</p>
+                  </div>
                 </div>
                 
-                {/* Navigation Buttons - Mobile */}
-                <div className="sm:hidden absolute bottom-4 left-0 right-0 flex justify-center space-x-4 pointer-events-none">
-                  <button 
-                    onClick={(e) => { e.stopPropagation(); handlePrevImage(); }} 
-                    className="bg-black/60 text-white p-2 rounded-full hover:bg-black/80 transition-colors shadow-lg pointer-events-auto" 
-                    aria-label="Previous image"
-                  >
-                    <ArrowLeft className="w-5 h-5" />
-                  </button>
-                  <button 
-                    onClick={(e) => { e.stopPropagation(); handleNextImage(); }} 
-                    className="bg-black/60 text-white p-2 rounded-full hover:bg-black/80 transition-colors shadow-lg pointer-events-auto" 
-                    aria-label="Next image"
-                  >
-                    <ArrowLeft className="w-5 h-5 transform rotate-180" />
-                  </button>
-                </div>
+                <button 
+                  onClick={(e) => { e.stopPropagation(); handleNextImage(); }} 
+                  className="hidden sm:block absolute right-4 bg-black/60 text-white p-3 rounded-full hover:bg-black/80 transition-colors shadow-lg z-10" 
+                  aria-label="Next image"
+                >
+                  <ArrowRight className="w-6 h-6" />
+                </button>
+                
               </div>
               
-              {/* Description Section */}
-              <div className="p-4 sm:p-6 bg-white">
-                <div className="space-y-3">
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">{service.title}</h3>
-                  <p className="text-gray-800 text-sm sm:text-base leading-relaxed">
-                    {getImageDescription(selectedImage, service.id)}
-                  </p>
-                </div>
+              {/* Navigation Buttons - Mobile */}
+              <div className="sm:hidden absolute bottom-4 left-0 right-0 flex justify-center space-x-4">
+                <button 
+                  onClick={(e) => { e.stopPropagation(); handlePrevImage(); }} 
+                  className="bg-black/60 text-white p-3 rounded-full hover:bg-black/80 transition-colors shadow-lg" 
+                  aria-label="Previous image"
+                >
+                  <ArrowLeft className="w-5 h-5" />
+                </button>
+                <button 
+                  onClick={(e) => { e.stopPropagation(); handleNextImage(); }} 
+                  className="bg-black/60 text-white p-3 rounded-full hover:bg-black/80 transition-colors shadow-lg" 
+                  aria-label="Next image"
+                >
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+            
+            {/* Description Section */}
+            <div className="p-4 sm:p-6 bg-white">
+              <div className="space-y-3">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900">{service.title}</h3>
+                <p className="text-gray-800 text-sm sm:text-base leading-relaxed">
+                  {getImageDescription(selectedImage, service.id)}
+                </p>
               </div>
             </div>
           </div>

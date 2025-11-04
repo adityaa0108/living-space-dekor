@@ -17,6 +17,12 @@ const Portfolio = () => {
 
   const projects = [
     {
+      title: "Modern Kitchen Remodel",
+      category: "residential",
+      image: "/photos/res/kitchen/1.jpg",
+      description: "Contemporary kitchen design with premium finishes"
+    },
+    {
       title: "Luxury Penthouse",
       category: "residential",
       image: heroMain,
