@@ -84,7 +84,7 @@ const Residential = () => {
                 id: 'living-room',
                 title: 'Living Room Design',
                 description: 'Transform your living space with our expert design solutions that combine comfort and style.',
-                image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
+                image: '/photos/res/living/1.jpg'
               },
               {
                 id: 'kitchen',
@@ -96,25 +96,25 @@ const Residential = () => {
                 id: 'bedroom',
                 title: 'Bedroom Design',
                 description: 'Create your perfect sanctuary with our personalized bedroom design services.',
-                image: 'https://images.unsplash.com/photo-151369420323-9dcab9f5a5a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
+                image: '/photos/res/bedroom/1.jpg'
               },
               {
                 id: 'home-office',
                 title: 'Home Office',
                 description: 'Design a productive and inspiring workspace that fits your home and work style.',
-                image: 'https://images.unsplash.com/photo-1497366811353-6870744d04ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80'
+                image: '/photos/res/office/1.jpg'
               },
               {
                 id: 'bathroom',
                 title: 'Bathroom Renovation',
                 description: 'Upgrade your bathroom with our luxurious and practical renovation solutions.',
-                image: 'https://images.unsplash.com/photo-1600566751981-7c9e7d5e4e2b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
+                image: '/photos/res/bathroom/1.jpg'
               },
               {
                 id: 'outdoor',
                 title: 'Outdoor Living',
                 description: 'Extend your living space outdoors with our beautiful and functional exterior designs.',
-                image: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
+                image: '/photos/res/outdoor/1.jpg'
               }
             ].map((category, index) => (
               <Link 

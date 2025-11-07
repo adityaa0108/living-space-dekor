@@ -13,7 +13,7 @@ const services = [
     id: 'living-room',
     title: 'Living Room Design',
     description: 'Transform your living space with our expert design solutions that combine comfort and style.',
-    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1700&q=80',
+    image: '/photos/res/living/1.jpg',
     fullDescription: 'Our living room designs are tailored to create a harmonious balance between aesthetics and functionality. We focus on creating spaces that reflect your personal style while ensuring maximum comfort. From modern minimalist to classic elegance, our designs transform your living area into a welcoming retreat for family and guests alike.',
     features: [
       'Custom furniture selection and arrangement',
@@ -22,21 +22,41 @@ const services = [
       'Space planning and layout optimization',
       'Accessorizing and finishing touches'
     ],
-    images: [
-      'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
-      'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1700&q=80',
-      'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1617806118233-18e1de247200?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
-      'https://images.unsplash.com/photo-1617806118233-18e1de247200?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
-      'https://images.unsplash.com/photo-1617806118233-18e1de247200?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
-      'https://images.unsplash.com/photo-1617806118233-18e1de247200?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
-      'https://images.unsplash.com/photo-1617806118233-18e1de247200?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
-      'https://images.unsplash.com/photo-1617806118233-18e1de247200?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
-      'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
-      'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
-      'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
-      'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80'
-    ]
+    images: (() => {
+      const designs = [
+        { style: 'Modern', desc: 'Sleek lines and minimalist design with a focus on functionality and clean aesthetics' },
+        { style: 'Contemporary', desc: 'Current design trends with a mix of different styles and materials' },
+        { style: 'Traditional', desc: 'Classic design elements with rich wood tones and elegant furnishings' },
+        { style: 'Transitional', desc: 'A perfect blend of traditional and contemporary design elements' },
+        { style: 'Rustic', desc: 'Natural materials and a warm, cozy atmosphere with a focus on comfort' },
+        { style: 'Industrial', desc: 'Exposed materials, metal accents, and an urban loft feel' },
+        { style: 'Scandinavian', desc: 'Light colors, natural light, and functional furniture in a minimalist approach' },
+        { style: 'Bohemian', desc: 'Eclectic mix of patterns, textures, and colors for a free-spirited look' },
+        { style: 'Coastal', desc: 'Light, airy spaces with a beachy, relaxed vibe and nautical elements' },
+        { style: 'Mid-Century Modern', desc: 'Retro-inspired design with clean lines and organic shapes' },
+        { style: 'Farmhouse', desc: 'Rustic charm with modern amenities and a cozy, welcoming feel' },
+        { style: 'Art Deco', desc: 'Bold geometric patterns, rich colors, and lavish ornamentation' },
+        { style: 'Minimalist', desc: 'Simple, uncluttered spaces with a monochromatic color palette' },
+        { style: 'Eclectic', desc: 'A mix of different styles, periods, and textures for a unique look' },
+        { style: 'French Country', desc: 'Elegant and refined with a rustic, countryside charm' },
+        { style: 'Asian Zen', desc: 'Tranquil spaces with natural elements and a sense of balance' }
+      ];
+      
+      const images = [];
+      for (let i = 0; i < 64; i++) {
+        const num = i + 1;
+        const design = designs[i % designs.length];
+        const variation = Math.floor(i / designs.length) + 1;
+        const variationText = variation > 1 ? ` (Variation ${variation})` : '';
+        
+        images.push({
+          url: `/photos/res/living/${num}.jpg`,
+          title: `${design.style} Living Space${variationText}`,
+          description: `${design.desc}. This ${design.style.toLowerCase()} living space showcases the perfect balance of form and function.`
+        });
+      }
+      return images;
+    })()
   },
   {
     id: 'kitchen',
@@ -354,7 +374,7 @@ const services = [
     id: 'home-office',
     title: 'Home Office',
     description: 'Design a productive and inspiring workspace that fits your home and work style.',
-    image: 'https://images.unsplash.com/photo-1497366811353-6870744d04ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80',
+    image: '/photos/res/office/1.jpg',
     fullDescription: 'With more people working from home, having a functional and inspiring home office is essential. We design workspaces that enhance productivity while maintaining comfort and style. Our home office solutions include ergonomic furniture, proper lighting, and smart storage to create an environment that helps you do your best work.',
     features: [
       'Ergonomic furniture selection',
@@ -363,22 +383,95 @@ const services = [
       'Storage and organization',
       'Acoustic treatments'
     ],
-    gallery: [
-      'https://images.unsplash.com/photo-1497366811353-6870744d04ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80',
-      'https://images.unsplash.com/photo-1497366811353-6870744d04ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80',
-      'https://images.unsplash.com/photo-1497366811353-6870744d04ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80',
-      'https://images.unsplash.com/photo-1497366811353-6870744d04ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80',
-      'https://images.unsplash.com/photo-1497366811353-6870744d04ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80',
-      'https://images.unsplash.com/photo-1497366811353-6870744d04ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80',
-      'https://images.unsplash.com/photo-1497366811353-6870744d04ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80',
-      'https://images.unsplash.com/photo-1497366811353-6870744d04ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80'
+    category: 'residential',
+    images: [
+      {
+        url: '/photos/res/office/1.jpg',
+        title: 'Modern Minimalist Home Office',
+        description: 'Clean lines and a neutral color palette create a distraction-free workspace with built-in shelving and ample natural light.'
+      },
+      {
+        url: '/photos/res/office/2.jpg',
+        title: 'Contemporary Workspace',
+        description: 'Sleek design with a floating desk, ergonomic chair, and strategic lighting for optimal productivity.'
+      },
+      {
+        url: '/photos/res/office/3.jpg',
+        title: 'Scandinavian Home Office',
+        description: 'Light wood tones and white surfaces create an airy, inspiring workspace with plenty of storage solutions.'
+      },
+      {
+        url: '/photos/res/office/4.jpg',
+        title: 'Industrial Loft Office',
+        description: 'Exposed brick and metal accents combine with modern furniture for a creative workspace with character.'
+      },
+      {
+        url: '/photos/res/office/5.jpg',
+        title: 'Executive Home Office',
+        description: 'Luxurious dark wood desk with leather chair, perfect for video conferences and client meetings.'
+      },
+      {
+        url: '/photos/res/office/6.jpg',
+        title: 'Corner Workspace',
+        description: 'Space-efficient corner desk setup with floating shelves and task lighting in a compact area.'
+      },
+      {
+        url: '/photos/res/office/7.jpg',
+        title: 'Creative Studio Space',
+        description: 'Open concept office with a large work table, perfect for brainstorming and collaborative projects.'
+      },
+      {
+        url: '/photos/res/office/8.jpg',
+        title: 'Modern Farmhouse Office',
+        description: 'Rustic wood desk with modern accents and comfortable seating in a bright, airy room.'
+      },
+      {
+        url: '/photos/res/office/9.jpg',
+        title: 'Compact Urban Office',
+        description: 'Space-saving wall-mounted desk with floating shelves in a small apartment setting.'
+      },
+      {
+        url: '/photos/res/office/10.jpg',
+        title: 'Luxury Home Library Office',
+        description: 'Elegant built-in bookshelves with a classic desk, creating a sophisticated workspace.'
+      },
+      {
+        url: '/photos/res/office/11.jpg',
+        title: 'Minimalist Standing Desk',
+        description: 'Ergonomic stand-up desk with cable management and a view of the outdoors.'
+      },
+      {
+        url: '/photos/res/office/12.jpg',
+        title: 'Eclectic Home Office',
+        description: 'Vibrant workspace with bold colors, unique furniture, and personal touches for inspiration.'
+      },
+      {
+        url: '/photos/res/office/13.jpg',
+        title: 'Modern Glass Office',
+        description: 'Sleek glass desk with a transparent chair and minimal decor for a clean, professional look.'
+      },
+      {
+        url: '/photos/res/office/14.jpg',
+        title: 'Rustic Cabin Workspace',
+        description: 'Warm wood paneling with a large work surface and comfortable leather chair in a cozy setting.'
+      },
+      {
+        url: '/photos/res/office/15.jpg',
+        title: 'Contemporary Loft Office',
+        description: 'Open space with high ceilings, large windows, and a mix of modern and industrial elements.'
+      },
+      {
+        url: '/photos/res/office/16.jpg',
+        title: 'Minimalist White Office',
+        description: 'All-white workspace with clean lines, built-in storage, and subtle texture variations.'
+      }
     ]
   },
   {
     id: 'bathroom',
     title: 'Bathroom Renovation',
     description: 'Upgrade your bathroom with our luxurious and practical renovation solutions.',
-    image: 'https://images.unsplash.com/photo-1600566751981-7c9e7d5e4e2b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+    image: '/photos/res/bathroom/1.jpg',
     fullDescription: 'Transform your bathroom into a spa-like retreat with our expert renovation services. We combine functionality with elegant design to create a space that meets your needs and exceeds your expectations. From modern minimalist to luxurious spa-inspired designs, we handle every aspect of your bathroom renovation with meticulous attention to detail.',
     features: [
       'Custom cabinetry and storage solutions',
@@ -391,9 +484,116 @@ const services = [
     ],
     category: 'residential',
     images: [
-      'https://images.unsplash.com/photo-1600566751981-7c9e7d5e4e2b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1584622650111-993f4268e2c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
+      {
+        url: '/photos/res/bathroom/1.jpg',
+        title: 'Modern Spa Bathroom',
+        description: 'Elegant freestanding tub with floor-to-ceiling tiles and a rain shower for the ultimate spa experience.'
+      },
+      {
+        url: '/photos/res/bathroom/2.jpg',
+        title: 'Luxury Master Bath',
+        description: 'Spacious double vanity with marble countertops and his & hers sinks in a contemporary setting.'
+      },
+      {
+        url: '/photos/res/bathroom/3.jpg',
+        title: 'Minimalist Wet Room',
+        description: 'Sleek, open-concept wet room with a frameless glass shower and floating vanity.'
+      },
+      {
+        url: '/photos/res/bathroom/4.jpg',
+        title: 'Rustic Wood Accent Bath',
+        description: 'Natural wood elements paired with modern fixtures create a warm, inviting atmosphere.'
+      },
+      {
+        url: '/photos/res/bathroom/5.jpg',
+        title: 'Black & White Classic',
+        description: 'Timeless black and white checkerboard flooring with subway tile walls and brass fixtures.'
+      },
+      {
+        url: '/photos/res/bathroom/6.jpg',
+        title: 'Modern Farmhouse Bath',
+        description: 'Shiplap walls, a clawfoot tub, and black matte fixtures combine for a cozy yet stylish look.'
+      },
+      {
+        url: '/photos/res/bathroom/7.jpg',
+        title: 'Luxury Walk-in Shower',
+        description: 'Spacious walk-in shower with multiple shower heads, bench seating, and elegant tile work.'
+      },
+      {
+        url: '/photos/res/bathroom/8.jpg',
+        title: 'Small Bathroom Makeover',
+        description: 'Smart storage solutions and light colors make this small bathroom feel spacious and functional.'
+      },
+      {
+        url: '/photos/res/bathroom/9.jpg',
+        title: 'Marble Masterpiece',
+        description: 'Carrara marble throughout with gold accents and a freestanding soaking tub.'
+      },
+      {
+        url: '/photos/res/bathroom/10.jpg',
+        title: 'Industrial Chic',
+        description: 'Exposed plumbing, concrete finishes, and metal accents create an edgy, modern look.'
+      },
+      {
+        url: '/photos/res/bathroom/11.jpg',
+        title: 'Coastal Retreat',
+        description: 'Light blue tones, white shiplap, and natural wood elements bring the beach indoors.'
+      },
+      {
+        url: '/photos/res/bathroom/12.jpg',
+        title: 'Japanese Soaking Tub',
+        description: 'Deep soaking tub with a minimalist design and natural wood accents for a zen experience.'
+      },
+      {
+        url: '/photos/res/bathroom/13.jpg',
+        title: 'Vintage Glam',
+        description: 'Crystal chandelier, clawfoot tub, and ornate mirror create a luxurious vintage aesthetic.'
+      },
+      {
+        url: '/photos/res/bathroom/14.jpg',
+        title: 'Modern Concrete',
+        description: 'Polished concrete walls and floors with sleek, minimalist fixtures.'
+      },
+      {
+        url: '/photos/res/bathroom/15.jpg',
+        title: 'Spa Oasis',
+        description: 'Steam shower, heated floors, and a towel warmer create a true home spa experience.'
+      },
+      {
+        url: '/photos/res/bathroom/16.jpg',
+        title: 'Black & Gold Luxury',
+        description: 'Dramatic black walls with gold fixtures and marble accents for a bold statement.'
+      },
+      {
+        url: '/photos/res/bathroom/17.jpg',
+        title: 'Scandinavian Simplicity',
+        description: 'Clean lines, white walls, and natural wood for a bright, airy feel.'
+      },
+      {
+        url: '/photos/res/bathroom/18.jpg',
+        title: 'Mediterranean Retreat',
+        description: 'Warm earth tones, patterned tiles, and wrought iron details.'
+      },
+      {
+        url: '/photos/res/bathroom/19.jpg',
+        title: 'Modern Rustic',
+        description: 'Reclaimed wood vanity with modern fixtures and stone vessel sink.'
+      },
+      {
+        url: '/photos/res/bathroom/20.jpg',
+        title: 'Glamorous Powder Room',
+        description: 'Wallpapered accent wall, crystal sconces, and a statement mirror.'
+      },
+      {
+        url: '/photos/res/bathroom/21.jpg',
+        title: 'Sleek and Modern',
+        description: 'Floating vanity, wall-mounted toilet, and large format tiles for a clean look.'
+      },
+      {
+        url: '/photos/res/bathroom/22.jpg',
+        title: 'Luxury Master Suite',
+        description: 'His and hers vanities, a freestanding tub, and a spacious walk-in shower.'
+      }
     ]
   },
 
@@ -668,21 +868,204 @@ const services = [
     id: 'outdoor',
     title: 'Outdoor Living',
     description: 'Extend your living space outdoors with our beautiful and functional exterior designs.',
-    image: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+    image: '/photos/res/outdoor/1.jpg',
     fullDescription: 'Make the most of your outdoor space with our custom exterior design solutions. Whether you want a cozy patio, an outdoor kitchen, or a complete backyard transformation, we create functional and beautiful outdoor living areas that extend your home\'s living space and enhance your connection with nature.',
     features: [
       'Outdoor kitchen and dining areas',
       'Patio and deck design',
       'Landscape integration',
       'Outdoor lighting solutions',
-      'Weather-resistant furniture selection'
+      'Weather-resistant furniture selection',
+      'Fire pits and water features',
+      'Outdoor entertainment systems'
     ],
     category: 'residential',
     images: [
-      'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
+      {
+        url: '/photos/res/outdoor/1.jpg',
+        title: 'Modern Poolside Oasis',
+        description: 'Infinity pool with sleek lounge chairs and tropical landscaping for the ultimate outdoor retreat.'
+      },
+      {
+        url: '/photos/res/outdoor/2.jpg',
+        title: 'Cozy Fire Pit Area',
+        description: 'Circular stone fire pit surrounded by comfortable seating for evening gatherings.'
+      },
+      {
+        url: '/photos/res/outdoor/3.jpg',
+        title: 'Luxury Outdoor Kitchen',
+        description: 'Fully equipped kitchen with built-in grill, refrigerator, and bar seating for outdoor entertaining.'
+      },
+      {
+        url: '/photos/res/outdoor/4.jpg',
+        title: 'Garden Dining Patio',
+        description: 'Elegant dining area surrounded by lush gardens and ambient string lighting.'
+      },
+      {
+        url: '/photos/res/outdoor/5.jpg',
+        title: 'Modern Rooftop Terrace',
+        description: 'Urban rooftop with modular furniture, planters, and panoramic city views.'
+      },
+      {
+        url: '/photos/res/outdoor/6.jpg',
+        title: 'Rustic Backyard Retreat',
+        description: 'Natural wood deck with Adirondack chairs overlooking a peaceful garden.'
+      },
+      {
+        url: '/photos/res/outdoor/7.jpg',
+        title: 'Tropical Pool Paradise',
+        description: 'Freeform pool with rock waterfall, palm trees, and thatched cabanas.'
+      },
+      {
+        url: '/photos/res/outdoor/8.jpg',
+        title: 'Minimalist Courtyard',
+        description: 'Clean lines with concrete planters, water feature, and built-in bench seating.'
+      },
+      {
+        url: '/photos/res/outdoor/9.jpg',
+        title: 'Mediterranean Patio',
+        description: 'Terracotta tiles, wrought iron furniture, and climbing vines create old-world charm.'
+      },
+      {
+        url: '/photos/res/outdoor/10.jpg',
+        title: 'Modern Deck with Hot Tub',
+        description: 'Multi-level deck featuring a built-in hot tub and glass railings for unobstructed views.'
+      },
+      {
+        url: '/photos/res/outdoor/11.jpg',
+        title: 'Tropical Cabana Lounge',
+        description: 'Thatched-roof cabanas with daybeds and billowing white curtains by the pool.'
+      },
+      {
+        url: '/photos/res/outdoor/12.jpg',
+        title: 'Rustic Fireplace Seating',
+        description: 'Stone fireplace with built-in seating and cozy outdoor sofas under a wooden pergola.'
+      },
+      {
+        url: '/photos/res/outdoor/13.jpg',
+        title: 'Modern Rooftop Garden',
+        description: 'Green roof with native plants, modern furniture, and city skyline views.'
+      },
+      {
+        url: '/photos/res/outdoor/14.jpg',
+        title: 'Coastal Backyard',
+        description: 'Whitewashed deck with navy blue accents and nautical-inspired decor near the beach.'
+      },
+      {
+        url: '/photos/res/outdoor/15.jpg',
+        title: 'Zen Garden Retreat',
+        description: 'Japanese-inspired garden with koi pond, stone pathway, and bamboo fencing.'
+      },
+      {
+        url: '/photos/res/outdoor/16.jpg',
+        title: 'Luxury Resort-Style Pool',
+        description: 'Zero-edge pool with sunken lounge area and tropical landscaping.'
+      },
+      {
+        url: '/photos/res/outdoor/17.jpg',
+        title: 'Rustic Farmhouse Porch',
+        description: 'Wraparound porch with rocking chairs, hanging ferns, and a farmhouse sink.'
+      },
+      {
+        url: '/photos/res/outdoor/18.jpg',
+        title: 'Modern Outdoor Living Room',
+        description: 'Sectional sofas around a fire table under a modern pergola with drapes.'
+      },
+      {
+        url: '/photos/res/outdoor/19.jpg',
+        title: 'Tropical Poolside Bar',
+        description: 'Thatched-roof tiki bar with bamboo stools and tropical drink station.'
+      },
+      {
+        url: '/photos/res/outdoor/20.jpg',
+        title: 'Mountain View Deck',
+        description: 'Multi-level deck with hot tub and panoramic mountain views.'
+      },
+      {
+        url: '/photos/res/outdoor/21.jpg',
+        title: 'Modern Courtyard Fountain',
+        description: 'Minimalist water feature with floating steps and architectural planters.'
+      },
+      {
+        url: '/photos/res/outdoor/22.jpg',
+        title: 'Cozy Backyard Shed',
+        description: 'Converted shed with French doors, deck, and string lights for a guest house feel.'
+      },
+      {
+        url: '/photos/res/outdoor/23.jpg',
+        title: 'Mediterranean Courtyard',
+        description: 'Terracotta tiles, wrought iron furniture, and climbing bougainvillea.'
+      },
+      {
+        url: '/photos/res/outdoor/24.jpg',
+        title: 'Modern Rooftop Lounge',
+        description: 'Minimalist furniture, fire pits, and city skyline views on a rooftop terrace.'
+      },
+      {
+        url: '/photos/res/outdoor/25.jpg',
+        title: 'Tropical Garden Path',
+        description: 'Stone pathway through lush tropical plants and palm trees.'
+      },
+      {
+        url: '/photos/res/outdoor/26.jpg',
+        title: 'Rustic Wooden Deck',
+        description: 'Reclaimed wood deck with built-in benches and a rustic dining area.'
+      },
+      {
+        url: '/photos/res/outdoor/27.jpg',
+        title: 'Modern Water Feature',
+        description: 'Reflecting pool with floating steps and minimalist landscaping.'
+      },
+      {
+        url: '/photos/res/outdoor/28.jpg',
+        title: 'Coastal Fire Pit',
+        description: 'Whitewashed stone fire pit with blue cushions and driftwood accents.'
+      },
+      {
+        url: '/photos/res/outdoor/29.jpg',
+        title: 'Asian-Inspired Garden',
+        description: 'Zen garden with stone lanterns, bamboo, and a koi pond.'
+      },
+      {
+        url: '/photos/res/outdoor/30.jpg',
+        title: 'Modern Pool House',
+        description: 'Sleek pool house with glass walls and a green roof.'
+      },
+      {
+        url: '/photos/res/outdoor/31.jpg',
+        title: 'Rustic Stone Patio',
+        description: 'Flagstone patio with a wood-burning fireplace and rustic furniture.'
+      },
+      {
+        url: '/photos/res/outdoor/32.jpg',
+        title: 'Tropical Outdoor Shower',
+        description: 'Private outdoor shower surrounded by tropical plants and bamboo fencing.'
+      },
+      {
+        url: '/photos/res/outdoor/33.jpg',
+        title: 'Modern Rooftop Dining',
+        description: 'Long dining table with modern chairs and city views on a rooftop terrace.'
+      },
+      {
+        url: '/photos/res/outdoor/34.jpg',
+        title: 'Rustic Garden Shed',
+        description: 'Charming shed with flower boxes and a small patio area.'
+      },
+      {
+        url: '/photos/res/outdoor/35.jpg',
+        title: 'Modern Courtyard Pool',
+        description: 'Geometric pool with a wooden deck and minimalist landscaping.'
+      },
+      {
+        url: '/photos/res/outdoor/36.jpg',
+        title: 'Coastal Hammock Garden',
+        description: 'Hammocks strung between palm trees with ocean views.'
+      },
+      {
+        url: '/photos/res/outdoor/37.jpg',
+        title: 'Modern Outdoor Kitchen',
+        description: 'Sleek outdoor kitchen with concrete countertops and built-in appliances.'
+      }
     ]
   }
 ];
@@ -848,37 +1231,54 @@ const ServiceDetail = () => {
                 
                 {/* Pagination */}
                 {service.images && service.images.length > imagesPerPage && (
-                  <div className="flex justify-center mt-8">
-                    <div className="flex items-center space-x-2">
-                      <button
-                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                        disabled={currentPage === 1}
-                        className="px-3 py-1 rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                        Previous
-                      </button>
-                      
-                      {Array.from({ length: Math.ceil(service.images.length / imagesPerPage) }).map((_, index) => (
+                  <div className="mt-8">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
+                      <div className="flex items-center space-x-1 sm:space-x-2">
                         <button
-                          key={index}
-                          onClick={() => setCurrentPage(index + 1)}
-                          className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                            currentPage === index + 1 
-                              ? 'bg-primary text-white' 
-                              : 'bg-white text-gray-700 hover:bg-gray-100'
-                          }`}
+                          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                          disabled={currentPage === 1}
+                          className="px-3 py-2 sm:py-1 text-sm sm:text-base rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                         >
-                          {index + 1}
+                          Previous
                         </button>
-                      ))}
+                        
+                        {/* Show limited page numbers on mobile, more on larger screens */}
+                        <div className="hidden sm:flex items-center space-x-1">
+                          {Array.from({ length: Math.ceil(service.images.length / imagesPerPage) }).map((_, index) => (
+                            <button
+                              key={index}
+                              onClick={() => setCurrentPage(index + 1)}
+                              className={`w-8 h-8 sm:w-10 sm:h-10 text-sm sm:text-base rounded-full flex items-center justify-center transition-colors ${
+                                currentPage === index + 1 
+                                  ? 'bg-primary text-white' 
+                                  : 'bg-white text-gray-700 hover:bg-gray-100'
+                              }`}
+                            >
+                              {index + 1}
+                            </button>
+                          ))}
+                        </div>
+                        
+                        {/* Mobile pagination - show only current page and total */}
+                        <div className="sm:hidden flex items-center space-x-1">
+                          <span className="px-3 py-2 bg-primary text-white rounded-full text-sm">
+                            {currentPage} / {Math.ceil(service.images.length / imagesPerPage)}
+                          </span>
+                        </div>
+                        
+                        <button
+                          onClick={() => setCurrentPage(prev => Math.min(prev + 1, Math.ceil(service.images.length / imagesPerPage)))}
+                          disabled={currentPage === Math.ceil(service.images.length / imagesPerPage)}
+                          className="px-3 py-2 sm:py-1 text-sm sm:text-base rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                        >
+                          Next
+                        </button>
+                      </div>
                       
-                      <button
-                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, Math.ceil(service.images.length / imagesPerPage)))}
-                        disabled={currentPage === Math.ceil(service.images.length / imagesPerPage)}
-                        className="px-3 py-1 rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                        Next
-                      </button>
+                      {/* Page info for larger screens */}
+                      <div className="hidden sm:block text-sm text-gray-500 mt-2 sm:mt-0 sm:ml-3">
+                        Page {currentPage} of {Math.ceil(service.images.length / imagesPerPage)}
+                      </div>
                     </div>
                   </div>
                 )}
