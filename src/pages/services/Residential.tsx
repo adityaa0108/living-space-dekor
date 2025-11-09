@@ -139,8 +139,8 @@ const Residential = () => {
                 <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
                   <h3 className="text-xl font-semibold mb-2">{category.title}</h3>
                   
-                  {/* Description - always visible on mobile, hover on desktop */}
-                  <div className="overflow-hidden transition-all duration-500 max-h-0 group-hover:max-h-40 md:group-hover:max-h-40">
+                  {/* Description - visible by default on mobile, hover on desktop */}
+                  <div className="overflow-hidden transition-all duration-500 max-h-40 md:max-h-0 md:group-hover:max-h-40">
                     <div className="pt-2">
                       <p className="text-gray-200 text-sm">{category.description}</p>
                       <div className="mt-4 text-white font-medium hover:underline flex items-center gap-2">
@@ -148,15 +148,6 @@ const Residential = () => {
                         <ArrowRight className="w-4 h-4" />
                       </div>
                     </div>
-                  </div>
-                  
-                  {/* Mobile - Always show description */}
-                  <div className="md:hidden mt-2">
-                    <p className="text-gray-200 text-sm">{category.description}</p>
-                    <Link to={`/services/${category.id}`} className="mt-2 text-white font-medium hover:underline flex items-center gap-2">
-                      Learn More
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
                   </div>
                 </div>
               </Link>

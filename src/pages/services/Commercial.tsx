@@ -108,7 +108,7 @@ const Commercial = () => {
                 id: 'conference-rooms',
                 title: 'Conference Rooms',
                 description: 'Professional meeting spaces equipped with the latest technology.',
-                image: 'https://images.unsplash.com/photo-1579829366248-204fe8413f31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
+                image: '/photos/comm/conf/1.jpg'
               },
               {
                 id: 'wellness-areas',

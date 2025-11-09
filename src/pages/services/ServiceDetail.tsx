@@ -690,7 +690,7 @@ const services = [
     id: 'conference-rooms',
     title: 'Conference Rooms',
     description: 'Professional meeting spaces equipped with the latest technology.',
-    image: 'https://images.unsplash.com/photo-1579829366248-204fe8413f31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+    image: '/photos/comm/conf/1.jpg',
     fullDescription: 'Design conference rooms that facilitate productive meetings and presentations with our expert design services. We create functional, technology-integrated spaces that support collaboration and communication.',
     features: [
       'Acoustic treatments',
@@ -702,11 +702,31 @@ const services = [
       'Branding elements'
     ],
     category: 'commercial',
-    images: [
-      'https://images.unsplash.com/photo-1579829366248-204fe8413f31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1579829366248-204fe8413f31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1579829366248-204fe8413f31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-    ]
+    images: (() => {
+      const confRooms = [
+        { style: 'Modern', desc: 'Sleek and contemporary design with clean lines and advanced technology integration' },
+        { style: 'Executive', desc: 'Luxurious boardroom with premium finishes and executive seating' },
+        { style: 'Collaborative', desc: 'Flexible space designed for team collaboration and brainstorming sessions' },
+        { style: 'Video Conference', desc: 'State-of-the-art video conferencing setup with professional lighting and acoustics' },
+        { style: 'Training', desc: 'Spacious room designed for workshops and training sessions' },
+        { style: 'Huddle', desc: 'Small meeting space for quick team meetings and discussions' }
+      ];
+      
+      const images = [];
+      for (let i = 0; i < 30; i++) {
+        const num = i + 1;
+        const room = confRooms[i % confRooms.length];
+        const variation = Math.floor(i / confRooms.length) + 1;
+        const variationText = variation > 1 ? ` (Variation ${variation})` : '';
+        
+        images.push({
+          url: `/photos/comm/conf/${num}.jpg`,
+          title: `${room.style} Conference Room${variationText}`,
+          description: `${room.desc}. This ${room.style.toLowerCase()} conference room is designed to enhance productivity and collaboration.`
+        });
+      }
+      return images;
+    })()
   },
   {
     id: 'wellness-areas',
@@ -1118,6 +1138,11 @@ const ServiceDetail = () => {
     return <div>Service not found</div>;
   }
   
+  // Filter related services by category
+  const relatedServices = services.filter(s => 
+    s.id !== serviceId && s.category === service.category
+  ).slice(0, 3);
+  
   // Navigation handlers for the image gallery
   const handlePrevImage = () => {
     if (!selectedImage || !service.images) return;
@@ -1191,7 +1216,12 @@ const ServiceDetail = () => {
               {/* Photo Gallery */}
               <div className="mt-16">
                 <div className="flex justify-between items-center mb-8">
-                  <h3 className="text-2xl font-semibold">Our Kitchen Projects</h3>
+                  <h3 className="text-2xl font-semibold">
+                    {service.category === 'residential' ? 'Our Residential ' : 
+                     service.category === 'commercial' ? 'Our Commercial ' : 
+                     service.category === 'hospitality' ? 'Our Hospitality ' : 'Our '}
+                    {service.title} Projects
+                  </h3>
                   <button 
                     onClick={() => service.images && service.images.length > 0 && setSelectedImage(service.images[0])}
                     className="text-primary hover:text-primary/80 flex items-center text-sm font-medium group"
@@ -1407,7 +1437,7 @@ const ServiceDetail = () => {
               <div className="space-y-3">
                 <h3 className="text-lg sm:text-xl font-bold text-gray-900">{service.title}</h3>
                 <p className="text-gray-800 text-sm sm:text-base leading-relaxed">
-                  {getImageDescription(selectedImage, service.id)}
+                  {selectedImage?.description || getImageDescription(selectedImage?.url || '', service.id)}
                 </p>
               </div>
             </div>
