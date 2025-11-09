@@ -84,7 +84,7 @@ const Commercial = () => {
                 id: 'office-spaces',
                 title: 'Office Spaces',
                 description: 'Innovative office designs that enhance productivity and reflect your corporate identity.',
-                image: 'https://images.unsplash.com/photo-1497366811353-6870744d04ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80'
+                image: '/photos/comm/corporate/1.jpg'
               },
               {
                 id: 'retail-design',

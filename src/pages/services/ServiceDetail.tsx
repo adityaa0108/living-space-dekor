@@ -602,7 +602,7 @@ const services = [
     id: 'office-spaces',
     title: 'Office Spaces',
     description: 'Innovative office designs that enhance productivity and reflect your corporate identity.',
-    image: 'https://images.unsplash.com/photo-1497366811353-6870744d04ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80',
+    image: '/photos/comm/corporate/1.jpg',
     fullDescription: 'Create a workspace that inspires creativity and productivity with our office design solutions. We understand the importance of a well-designed workspace in employee satisfaction and business success. Our designs incorporate the latest trends in workplace design while ensuring functionality and brand alignment.',
     features: [
       'Space planning and layout optimization',
@@ -615,9 +615,36 @@ const services = [
     ],
     category: 'commercial',
     images: [
-      'https://images.unsplash.com/photo-1497366811353-6870744d04ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80',
-      'https://images.unsplash.com/photo-1522071820081-009c5fdcb6e7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-      'https://images.unsplash.com/photo-1497366811353-6870744d04ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80'
+      {
+        url: '/photos/comm/corporate/1.jpg',
+        title: 'Modern Executive Office',
+        description: 'Elegant executive office with a large desk, comfortable seating, and floor-to-ceiling windows offering natural light.'
+      },
+      {
+        url: '/photos/comm/corporate/2.jpg',
+        title: 'Open Plan Workspace',
+        description: 'Spacious open office layout with ergonomic workstations and collaborative areas for team interaction.'
+      },
+      {
+        url: '/photos/comm/corporate/3.jpg',
+        title: 'Conference Room',
+        description: 'Professional meeting space with a large table, comfortable chairs, and modern presentation equipment.'
+      },
+      {
+        url: '/photos/comm/corporate/4.jpg',
+        title: 'Breakout Area',
+        description: 'Relaxed seating area for informal meetings and breaks, designed for comfort and casual collaboration.'
+      },
+      {
+        url: '/photos/comm/corporate/5.jpg',
+        title: 'Reception Area',
+        description: 'Welcoming reception space with modern furniture and brand-appropriate design elements.'
+      },
+      {
+        url: '/photos/comm/corporate/6.jpg',
+        title: 'Collaborative Workspace',
+        description: 'Innovative workspace with flexible seating arrangements and writable surfaces for brainstorming.'
+      }
     ]
   },
   {
