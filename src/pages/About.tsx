@@ -4,18 +4,18 @@ import { Award, Target, Heart, TrendingUp } from "lucide-react";
 import { useEffect, useState, useRef } from 'react';
 import aboutBanner from "@/assets/about-banner.jpg";
 import founderImage from "@/assets/founder.jpg";
-import BrandsMarquee from "@/components/BrandsMarquee";
+// import BrandsMarquee from "@/components/BrandsMarquee";
 
-const brands = [
-  { name: "Ekkaa", logo: "/logo/logo.png" },
-  { name: "Gaur's Builder", logo: "/logo/logo.png" },
-  { name: "Design Hub", logo: "/logo/logo.png" },
-  { name: "Elite Interiors", logo: "/logo/logo.png" },
-  { name: "Urban Living", logo: "/logo/logo.png" },
-  { name: "Modern Spaces", logo: "/logo/logo.png" },
-  { name: "Luxe Design", logo: "/logo/logo.png" },
-  { name: "Creative Homes", logo: "/logo/logo.png" },
-];
+// const brands = [
+//   { name: "Ekkaa", logo: "/logo/logo.png" },
+//   { name: "Gaur's Builder", logo: "/logo/logo.png" },
+//   { name: "Design Hub", logo: "/logo/logo.png" },
+//   { name: "Elite Interiors", logo: "/logo/logo.png" },
+//   { name: "Urban Living", logo: "/logo/logo.png" },
+//   { name: "Modern Spaces", logo: "/logo/logo.png" },
+//   { name: "Luxe Design", logo: "/logo/logo.png" },
+//   { name: "Creative Homes", logo: "/logo/logo.png" },
+// ];
 
 const About = () => {
   return (
@@ -74,8 +74,8 @@ const About = () => {
                 {/* Hover Image Overlay */}
                 <div className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
                   <img
-                    src="https://images.unsplash.com/photo-1616484812829-0c5b2a9c7f1c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                    alt="Vision"
+                    src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80"
+                    alt="Vision - Modern Interior Design"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-black/60" />
@@ -112,8 +112,8 @@ const About = () => {
                 {/* Hover Image Overlay */}
                 <div className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
                   <img
-                    src="https://images.unsplash.com/photo-1522071820081-009c5fdcb1d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                    alt="Mission"
+                    src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80"
+                    alt="Mission - Design Collaboration"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-black/60" />
@@ -140,12 +140,12 @@ const About = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
             <div className="order-2 lg:order-1">
               <span className="text-muted-foreground uppercase tracking-wider text-sm">Meet The Founder</span>
-              <h2 className="text-4xl font-bold mt-4 mb-6">Sarah Anderson</h2>
+              <h2 className="text-4xl font-bold mt-4 mb-6">Nitin Yadav</h2>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                With over 15 years of experience in luxury interior design, Sarah Anderson founded Living Space Dekor with a passion for creating spaces that tell stories. Her journey began with a degree in Interior Architecture from the prestigious Rhode Island School of Design.
+                With a distinguished career spanning over 15 years in luxury interior design, Nitin Yadav is the visionary force behind Living Space Dekor. Her journey in design began with an innate passion for transforming spaces, which led her to pursue a degree in Interior Architecture from the prestigious Rhode Island School of Design.
               </p>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                Sarah's design philosophy centers on the belief that every space should be a reflection of its inhabitants' personality and lifestyle. Her work has been featured in leading design publications and has earned numerous industry accolades.
+                Nitin's design philosophy is rooted in the belief that every space should be a harmonious blend of aesthetics, functionality, and the unique personality of its inhabitants. Under his leadership, Living Space Dekor has become synonymous with innovative design solutions and exceptional craftsmanship, earning recognition in leading design publications and numerous industry accolades.
               </p>
               <div className="flex items-center gap-8">
                 <div>
@@ -162,8 +162,8 @@ const About = () => {
               <div className="relative">
                 <div className="absolute -inset-4 bg-secondary/20 rounded-3xl blur-2xl"></div>
                 <img
-                  src={founderImage}
-                  alt="Sarah Anderson"
+                  src="/founder/1.jpg"
+                  alt="Nitin Yadav - Founder of Living Space Dekor"
                   className="relative rounded-2xl w-full h-[600px] object-cover shadow-2xl"
                 />
               </div>
@@ -196,12 +196,13 @@ const About = () => {
         </div>
       </section>
 
-      {/* Brands Marquee Section */}
+      {/* Brands Marquee Section - Commented out
       <BrandsMarquee 
         brands={brands}
         title="Trusted by Industry Leaders"
         subtitle="Building confidence with renowned organizations"
       />
+      */}
 
       <Footer />
     </div>

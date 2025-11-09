@@ -36,7 +36,7 @@ const ContactForm = () => {
                 </div>
                 <div>
                   <h3 className="text-base font-medium text-gray-900 mb-1">Phone</h3>
-                  <p className="text-sm text-gray-600">+1 (555) 123-4567</p>
+                  <p className="text-sm text-gray-600">+91 88266 06869</p>
                 </div>
               </div>
 
@@ -46,7 +46,7 @@ const ContactForm = () => {
                 </div>
                 <div>
                   <h3 className="text-base font-medium text-gray-900 mb-1">Email</h3>
-                  <p className="text-sm text-gray-600">hello@livingspacedekor.com</p>
+                  <p className="text-sm text-gray-600">info@livingspacedekor.com</p>
                 </div>
               </div>
 
@@ -56,7 +56,7 @@ const ContactForm = () => {
                 </div>
                 <div>
                   <h3 className="text-base font-medium text-gray-900 mb-1">Office</h3>
-                  <p className="text-sm text-gray-600">123 Design Street, Creative City, 12345</p>
+                  <p className="text-sm text-gray-600">Shop-LGB 28, Galaxy Diamond Plaza Sector 4 Greater Noida West, Greater Noida, Uttar Pradesh 201009</p>
                 </div>
               </div>
             </div>

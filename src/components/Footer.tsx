@@ -13,15 +13,19 @@ const Footer = () => {
               Transforming spaces into timeless masterpieces with bespoke design excellence.
             </p>
             <div className="flex space-x-4">
+              {/* Facebook link commented out
               <a href="#" className="text-primary-foreground hover:text-secondary transition-colors">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="text-primary-foreground hover:text-secondary transition-colors">
+              */}
+              <a href="https://www.instagram.com/livingspacedecor_?igsh=YjlnMzV5d2RiNW5x" target="_blank" rel="noopener noreferrer" className="text-primary-foreground hover:text-secondary transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
+              {/* LinkedIn link commented out
               <a href="#" className="text-primary-foreground hover:text-secondary transition-colors">
                 <Linkedin className="w-5 h-5" />
               </a>
+              */}
             </div>
           </div>
 
@@ -52,15 +56,15 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start gap-2 text-primary-foreground/80">
                 <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                <span>123 Design Street, Creative City, 12345</span>
+                <span>Shop-LGB 28, Galaxy Diamond Plaza Sector 4 Greater Noida West, Greater Noida, Uttar Pradesh 201009</span>
               </li>
               <li className="flex items-center gap-2 text-primary-foreground/80">
                 <Phone className="w-5 h-5" />
-                <span>+1 (555) 123-4567</span>
+                <span>+91 88266 06869</span>
               </li>
               <li className="flex items-center gap-2 text-primary-foreground/80">
                 <Mail className="w-5 h-5" />
-                <span>hello@livingspacedekor.com</span>
+                <span>info@livingspacedekor.com</span>
               </li>
             </ul>
           </div>
