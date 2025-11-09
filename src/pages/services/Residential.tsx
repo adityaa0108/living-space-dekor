@@ -40,8 +40,11 @@ const Residential = () => {
           }}
         />
         <div className="relative z-10 text-center text-primary-foreground max-w-4xl mx-auto px-6">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">Residential Design</h1>
-          <p className="text-xl md:text-2xl">Creating dream homes that reflect your unique personality and lifestyle</p>
+          <h1 className="text-5xl font-bold mb-6">Residential Interior Design</h1>
+          <p className="text-xl mb-8">Transform your living space into a personalized sanctuary</p>
+          <Link to="/contact" className="inline-flex items-center bg-primary text-primary-foreground px-8 py-3 rounded-full font-medium hover:bg-primary/90 transition-colors">
+            Get Started <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
         </div>
       </section>
 
