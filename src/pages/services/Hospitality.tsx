@@ -137,7 +137,7 @@ const Hospitality = () => {
                   <h3 className="text-xl font-semibold mb-2">{category.title}</h3>
                   
                   {/* Description - always visible on mobile, hover on desktop */}
-                  <div className="overflow-hidden transition-all duration-500 max-h-0 group-hover:max-h-40 md:group-hover:max-h-40">
+                  <div className="overflow-hidden transition-all duration-500 max-h-0 md:group-hover:max-h-40">
                     <div className="pt-2">
                       <p className="text-gray-200 text-sm">{category.description}</p>
                       <div className="mt-4 text-white font-medium hover:underline flex items-center gap-2">
