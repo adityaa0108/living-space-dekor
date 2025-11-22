@@ -1,7 +1,7 @@
+import { useRef, useState, useEffect } from 'react';
+import { Award, Target, Heart, TrendingUp } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Award, Target, Heart, TrendingUp } from "lucide-react";
-import { useEffect, useState, useRef } from 'react';
 import aboutBanner from "@/assets/about-banner.jpg";
 import founderImage from "@/assets/founder.jpg";
 // import BrandsMarquee from "@/components/BrandsMarquee";
@@ -26,8 +26,9 @@ const About = () => {
       <section className="relative h-[60vh] flex items-center justify-center">
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ 
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${aboutBanner})` 
+          style={{
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${aboutBanner})`,
+            backgroundAttachment: 'fixed'
           }}
         />
         <div className="relative z-10 text-center text-primary-foreground">

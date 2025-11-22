@@ -56,13 +56,13 @@ export default function WelcomePopup() {
             </div>
             
             {/* Content */}
-            <div className="relative px-6 py-8 sm:px-8 sm:py-10 text-center">
+            <div className="relative px-6 py-6 sm:px-8 sm:py-8 text-center">
               {/* Heading */}
               <motion.h2
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.4 }}
-                className="text-2xl sm:text-3xl md:text-4xl font-serif font-semibold text-gray-900 mb-3 leading-tight"
+                className="text-2xl sm:text-3xl md:text-3xl font-serif font-semibold text-gray-900 mb-2 leading-tight"
               >
                 Welcome to Living Space Décor
               </motion.h2>
@@ -72,7 +72,7 @@ export default function WelcomePopup() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.4 }}
-                className="text-sm sm:text-base md:text-lg text-gray-600 mb-6 sm:mb-8 max-w-sm mx-auto leading-relaxed px-2"
+                className="text-sm sm:text-base md:text-base text-gray-600 mb-5 sm:mb-6 max-w-sm mx-auto leading-relaxed px-2"
               >
                 Transform your space into a sanctuary of style and comfort. Let's create something beautiful together.
               </motion.p>
@@ -109,7 +109,7 @@ export default function WelcomePopup() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7, duration: 0.4 }}
-                className="mt-5 sm:mt-6 text-xs sm:text-sm text-gray-500 flex items-center justify-center gap-1.5"
+                className="mt-4 sm:mt-5 text-xs text-gray-500 flex items-center justify-center gap-1.5"
               >
                 <span className="inline-block w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
                 Join hundreds of satisfied homeowners

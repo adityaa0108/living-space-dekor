@@ -1,8 +1,9 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { useState, useRef, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { getRandomImageFromCategory } from "@/lib/imageUtils";
 import heroMain from "@/assets/hero-main.jpg";
 import residentialHero from "@/assets/residential-hero.jpg";
 import commercialHero from "@/assets/commercial-hero.jpg";
@@ -10,59 +11,74 @@ import hospitalityHero from "@/assets/hospitality-hero.jpg";
 
 const Portfolio = () => {
   const [filter, setFilter] = useState("all");
+  const [bgImage, setBgImage] = useState('');
   const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
+  useEffect(() => {
+    // Set a random background image from the commercial category
+    setBgImage(getRandomImageFromCategory('comm'));
+  }, []);
+
+  // Define all project categories and their images
   const projects = [
+    // Commercial Projects - Conference Rooms (1-30)
+    ...Array.from({ length: 30 }, (_, i) => ({
+      id: `conf-${i + 1}`,
+      title: `Conference Room ${i + 1}`,
+      category: "commercial" as const,
+      image: `/photos/comm/conf/${i + 1}.jpg`,
+      description: `Professional conference room design - Project CR${i + 1}`
+    })),
+    
+    // Commercial Projects - Corporate Offices (1-6)
+    ...Array.from({ length: 6 }, (_, i) => ({
+      id: `corp-${i + 1}`,
+      title: `Corporate Office ${i + 1}`,
+      category: "commercial" as const,
+      image: `/photos/comm/corporate/${i + 1}.jpg`,
+      description: `Elegant corporate office space - Project CO${i + 1}`
+    })),
+    
+    // Residential Projects - Bathrooms (1-21)
+    ...Array.from({ length: 21 }, (_, i) => ({
+      id: `bath-${i + 1}`,
+      title: `Bathroom Design ${i + 1}`,
+      category: "residential" as const,
+      image: `/photos/res/bathroom/${i + 1}.jpg`,
+      description: `Luxury bathroom design - Project B${i + 1}`
+    })),
+    
+    // Additional hero images
     {
-      title: "Modern Kitchen Remodel",
-      category: "residential",
-      image: "/photos/res/kitchen/1.jpg",
-      description: "Contemporary kitchen design with premium finishes"
-    },
-    {
+      id: 'hero-main',
       title: "Luxury Penthouse",
-      category: "residential",
+      category: "residential" as const,
       image: heroMain,
       description: "Modern minimalist design with panoramic city views"
     },
     {
-      title: "Elegant Master Suite",
-      category: "residential",
-      image: residentialHero,
-      description: "Sophisticated bedroom design with warm tones"
-    },
-    {
-      title: "Corporate Headquarters",
-      category: "commercial",
-      image: commercialHero,
-      description: "Contemporary office space designed for productivity"
-    },
-    {
+      id: 'hero-hotel',
       title: "Boutique Hotel Lobby",
-      category: "hospitality",
+      category: "hospitality" as const,
       image: hospitalityHero,
       description: "Welcoming luxury hospitality design"
-    },
-    {
-      title: "Modern Living Space",
-      category: "residential",
-      image: heroMain,
-      description: "Open-concept design with natural lighting"
-    },
-    {
-      title: "Executive Office Suite",
-      category: "commercial",
-      image: commercialHero,
-      description: "Premium commercial interior design"
     }
   ];
 
-  const filteredProjects = filter === "all" 
-    ? projects 
-    : projects.filter(p => p.category === filter);
+  // Filter projects based on selected category
+  const filteredProjects = (() => {
+    if (filter === 'all') return projects;
+    if (filter === 'residential') {
+      return projects.filter(p => p.image.includes('/res/'));
+    }
+    if (filter === 'commercial') {
+      return projects.filter(p => p.image.includes('/comm/'));
+    }
+    return projects.filter(p => p.category === filter);
+  })();
 
   // Handle touch events for swipe navigation
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -132,8 +148,15 @@ const Portfolio = () => {
     <div className="min-h-screen">
       <Navbar />
       
-      {/* Banner */}
-      <section className="relative h-[50vh] flex items-center justify-center bg-primary">
+      {/* Hero Section */}
+      <section className="relative h-[60vh] flex items-center justify-center">
+        <div 
+          className="absolute inset-0 bg-cover bg-center z-0"
+          style={{ 
+            backgroundImage: bgImage ? `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${bgImage}')` : `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${heroMain})`,
+            backgroundAttachment: 'fixed'
+          }}
+        />
         <div className="relative z-10 text-center text-primary-foreground">
           <h1 className="text-5xl md:text-6xl font-bold mb-4">Our Portfolio</h1>
           <p className="text-xl md:text-2xl">A Showcase of Excellence in Design</p>

@@ -8,7 +8,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-bold mb-4">Living Space Dekor</h3>
+            <div className="mb-4">
+              <img 
+                src="/logo/logo.png" 
+                alt="Living Space Dekor" 
+                className="h-12 w-auto object-contain"
+              />
+            </div>
             <p className="text-primary-foreground/80 mb-6">
               Transforming spaces into timeless masterpieces with bespoke design excellence.
             </p>
